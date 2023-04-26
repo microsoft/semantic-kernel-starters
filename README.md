@@ -1,14 +1,20 @@
-# Project
+# Semantic Kernel Starters
 
-> This repo has been populated by an initial template to help get you started. Please
-> make sure to update the content to build a great experience for community-building.
+This repository contains starter projects for the [Semantic Kernel](https://github.com/microsoft/semantic-kernel). Each starter is a self-contained application using a different programming langiage and application runtime.
 
-As the maintainer of this project, please make a few updates:
+## Usage
 
-- Improving this README.MD file to provide a great experience
-- Updating SUPPORT.MD with content about this project's support experience
-- Understanding the security reporting process in SECURITY.MD
-- Remove this section from the README
+- `git clone https://github.com/semantic-kernel/semantic-kernel-starters`
+- `code <any-sample-folder>`
+- Follow the instructions in each sample's README for setting up and running the sample
+- Alternatively you can use the [Semantic Kernel Tools](https://marketplace.visualstudio.com/items?itemName=ms-semantic-kernel.semantic-kernel) to "Create a New App" using the starters
+
+## Getting Started
+
+- [C# Hello World](sk-csharp-hello-world): The Hello World C# console application starter for the Semantic Kernel.
+- [C# Azure Functions](sk-csharp-azure-functions): The Hello World C# Azure Functions starter for the Semantic Kernel.
+- [Python Hello World](sk-python-hello-world): The Hello World Python console application starter for the Semantic Kernel.
+- [Python Azure Functions](sk-python-azure-functions): The Hello World Python Azure Functions starter for the Semantic Kernel.
 
 ## Contributing
 
