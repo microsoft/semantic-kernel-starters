@@ -16,7 +16,7 @@ Please help reviewers and future users, providing the following information:
 ### Contribution Checklist
 <!-- Before submitting this PR, please make sure: -->
 - [ ] The code builds clean without any errors or warnings
-- [ ] The PR follows SK Contribution Guidelines (https://github.com/microsoft/semantic-kernel/blob/main/CONTRIBUTING.md)
+- [ ] The PR follows SK Contribution Guidelines (https://github.com/microsoft/semantic-kernel-starters/blob/main/CONTRIBUTING.md)
 - [ ] The code follows the .NET coding conventions (https://learn.microsoft.com/dotnet/csharp/fundamentals/coding-style/coding-conventions) verified with `dotnet format`
 - [ ] All unit tests pass, and I have added new tests where possible
 - [ ] I didn't break anyone :smile:
