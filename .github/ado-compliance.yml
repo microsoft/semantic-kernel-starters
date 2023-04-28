@@ -10,6 +10,7 @@ pool:
 steps:
 - task: CredScan@3
 
+# Uncomment this section when TS/JS is checked in
 # - task: ESLint@1
 #   inputs:
 #     Configuration: 'recommended'
@@ -33,14 +34,15 @@ steps:
     ram: '16384'
     addProjectDirToScanningExclusionList: true
 
-- task: Semmle@1
-  inputs:
-    sourceCodeDirectory: '$(Build.SourcesDirectory)'
-    language: 'python'
-    querySuite: 'Recommended'
-    timeout: '1800'
-    ram: '16384'
-    addProjectDirToScanningExclusionList: true
+# Uncomment this section when Python is checked in
+# - task: Semmle@1
+#   inputs:
+#     sourceCodeDirectory: '$(Build.SourcesDirectory)'
+#     language: 'python'
+#     querySuite: 'Recommended'
+#     timeout: '1800'
+#     ram: '16384'
+#     addProjectDirToScanningExclusionList: true
 
 # Usage of System.AccessToken is only required for uploading
 # results to CodeQL servers via variable LGTM.UploadSnapshot = true
