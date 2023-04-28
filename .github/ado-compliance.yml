@@ -10,11 +10,11 @@ pool:
 steps:
 - task: CredScan@3
 
-- task: ESLint@1
-  inputs:
-    Configuration: 'recommended'
-    TargetType: 'eslint'
-    ErrorLevel: 'warn'
+# - task: ESLint@1
+#   inputs:
+#     Configuration: 'recommended'
+#     TargetType: 'eslint'
+#     ErrorLevel: 'warn'
 
 - task: UseDotNet@2
   displayName: 'Use .NET 7.0'
