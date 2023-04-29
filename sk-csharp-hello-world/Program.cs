@@ -22,7 +22,6 @@ IKernel kernel = new KernelBuilder().WithLogger(loggerFactory.CreateLogger<IKern
 
 // note: using skills from the repo
 var skillsDirectory = Path.Combine(System.IO.Directory.GetCurrentDirectory(), "skills");
-
 var skill = kernel.ImportSemanticSkillFromDirectory(skillsDirectory, "FunSkill");
 
 var context = new ContextVariables();
