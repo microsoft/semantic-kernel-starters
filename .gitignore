@@ -397,5 +397,6 @@ FodyWeavers.xsd
 # JetBrains Rider
 *.sln.iml
 
-# Semantic Kernel Tools
+# Semantic Kernel
 .semantic-kernel
+appsettings.json
