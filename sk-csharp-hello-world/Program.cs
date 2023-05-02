@@ -21,9 +21,7 @@ using ILoggerFactory loggerFactory = LoggerFactory.Create(builder =>
 IKernel kernel = new KernelBuilder().WithLogger(loggerFactory.CreateLogger<IKernel>()).WithConfiguration(kernelConfig).Build();
 
 // note: using skills from the repo
-var cwd = System.IO.Directory.GetCurrentDirectory();
 var skillsDirectory = Path.Combine(System.IO.Directory.GetCurrentDirectory(), "skills");
-
 var skill = kernel.ImportSemanticSkillFromDirectory(skillsDirectory, "FunSkill");
 
 var context = new ContextVariables();
