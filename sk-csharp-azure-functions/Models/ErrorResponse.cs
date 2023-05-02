@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 
 namespace Models;
 
-internal class HealthResponse
+internal class ErrorResponse
 {
     [JsonPropertyName("message")]
     public string Message { get; set; } = string.Empty;

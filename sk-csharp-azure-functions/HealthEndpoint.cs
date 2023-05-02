@@ -1,17 +1,14 @@
 ﻿// Copyright (c) Microsoft. All rights reserved.
 
 using System.Net;
-using KernelHttpServer.Model;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Azure.Functions.Worker.Http;
 using Microsoft.Azure.WebJobs.Extensions.OpenApi.Core.Attributes;
 using Microsoft.SemanticKernel;
-using Microsoft.SemanticKernel.Memory;
-
+using Models;
 
 // This endpoint exists as a convenience for the UI to check if the function it is dependent
 // on is running. You won't need this endpoint in a typical app.
-namespace KernelHttpServer;
 
 public class HealthEndpoint
 {

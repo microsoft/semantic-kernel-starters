@@ -2,7 +2,6 @@
 
 using System.Net;
 using System.Text.Json;
-using System.Linq;
 using Microsoft.Azure.Functions.Worker.Http;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Azure.WebJobs.Extensions.OpenApi.Core.Attributes;
@@ -10,7 +9,6 @@ using Microsoft.SemanticKernel;
 using Microsoft.SemanticKernel.Orchestration;
 using Microsoft.SemanticKernel.KernelExtensions;
 using Models;
-using Tavis.UriTemplates;
 
 public class ExecuteFunctionEndpoint
 {
@@ -31,26 +29,42 @@ public class ExecuteFunctionEndpoint
     [OpenApiResponseWithBody(statusCode: HttpStatusCode.OK, contentType: "application/json", bodyType: typeof(ExecuteFunctionResponse), Description = "Includes the AI response")]
     public async Task<HttpResponseData> ExecuteFunctionAsync(
         [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "skills/{skillName}/functions/{functionName}")]
-        HttpRequestData req,
+        HttpRequestData requestData,
         FunctionContext executionContext, string skillName, string functionName)
     {
-        var funcReq = await JsonSerializer.DeserializeAsync<ExecuteFunctionRequest>(req.Body, s_jsonOptions).ConfigureAwait(false);
+#pragma warning disable CA1062
+        var functionRequest = await JsonSerializer.DeserializeAsync<ExecuteFunctionRequest>(requestData.Body, s_jsonOptions).ConfigureAwait(false);
+#pragma warning disable CA1062
+        if (functionRequest == null)
+        {
+            return await CreateResponseAsync(requestData, HttpStatusCode.BadRequest, new ErrorResponse() { Message = $"Invalid request body {functionRequest}" }).ConfigureAwait(false);
+        }
 
         // note: using skills from the repo
         var skillsDirectory = Path.Combine(System.IO.Directory.GetCurrentDirectory(), "skills");
         var skill = _kernel.ImportSemanticSkillFromDirectory(skillsDirectory, skillName);
-        var skfunction = skill[functionName];
+        
+        var function = skill[functionName];
+        if (function == null)
+        {
+            return await CreateResponseAsync(requestData, HttpStatusCode.NotFound, new ErrorResponse() { Message = $"Unable to load {skillName}.{functionName}" }).ConfigureAwait(false);
+        }
 
         var context = new ContextVariables();
-        foreach (var v in funcReq.Variables)
+        foreach (var v in functionRequest.Variables)
         {
             context.Set(v.Key, v.Value);
         }
 
-        var result = await _kernel.RunAsync(context, skfunction);
+        var result = await _kernel.RunAsync(context, function).ConfigureAwait(false);
 
-        var rep = req.CreateResponse(HttpStatusCode.OK);
-        await rep.WriteAsJsonAsync(new ExecuteFunctionResponse() { Response = result.ToString() }).ConfigureAwait(false);
-        return rep;
+        return await CreateResponseAsync(requestData, HttpStatusCode.OK, new ExecuteFunctionResponse() { Response = result.ToString() }).ConfigureAwait(false);
+    }
+
+    private static async Task<HttpResponseData> CreateResponseAsync(HttpRequestData requestData, HttpStatusCode statusCode, object responseBody)
+    {
+        var responseData = requestData.CreateResponse(statusCode);
+        await responseData.WriteAsJsonAsync(responseBody).ConfigureAwait(false);
+        return responseData;
     }
 }

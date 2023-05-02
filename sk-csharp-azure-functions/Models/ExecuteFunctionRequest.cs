@@ -1,8 +1,10 @@
 ﻿// Copyright (c) Microsoft. All rights reserved.
+
 using System.Text.Json.Serialization;
 
 namespace Models;
 
+#pragma warning disable CA1812
 internal class ExecuteFunctionRequest
 {
     [JsonPropertyName("variables")]
@@ -16,9 +18,4 @@ internal class ExecuteFunctionVariable
 
     [JsonPropertyName("value")]
     public string Value { get; set; } = string.Empty;
-
-    public Boolean AssertValid()
-    {
-        return true;
-    }
 }

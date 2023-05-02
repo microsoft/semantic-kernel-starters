@@ -1,6 +1,4 @@
 {
-  // See https://go.microsoft.com/fwlink/?LinkId=827846
-  // for the documentation about the extensions.json format
   "recommendations": [
     "ms-dotnettools.csharp",
     "ms-semantic-kernel.semantic-kernel"
