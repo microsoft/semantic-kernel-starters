@@ -41,6 +41,8 @@ internal class KernelSettings
             return FromFile(DefaultConfigFile);
         }
 
+        Console.WriteLine($"Semantic kernel settings '{DefaultConfigFile}' not found, attempting to load configuration from user secrets.");
+
         return FromUserSecrets();
     }
 
@@ -60,7 +62,7 @@ internal class KernelSettings
             .Build();
 
         return configuration.Get<KernelSettings>()
-               ?? throw new InvalidDataException($"Invalid semantic kernel settings '{configFile}', please provide configuration settings using instructions in the README.");
+               ?? throw new InvalidDataException($"Invalid semantic kernel settings in '{configFile}', please provide configuration settings using instructions in the README.");
     }
 
     /// <summary>
@@ -73,6 +75,6 @@ internal class KernelSettings
             .Build();
 
         return configuration.Get<KernelSettings>()
-               ?? throw new InvalidDataException("Invalid semantic kernel settings, please provide configuration settings using instructions in the README.");
+               ?? throw new InvalidDataException("Invalid semantic kernel settings in user secrets, please provide configuration settings using instructions in the README.");
     }
 }
