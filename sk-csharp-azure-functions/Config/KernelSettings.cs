@@ -1,6 +1,4 @@
-﻿// Copyright (c) Microsoft. All rights reserved.
-
-using System.Text.Json.Serialization;
+﻿using System.Text.Json.Serialization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
@@ -37,12 +35,24 @@ internal class KernelSettings
     /// </summary>
     internal static KernelSettings LoadSettings()
     {
-        if (File.Exists(DefaultConfigFile))
-        {
-            return FromFile(DefaultConfigFile);
-        }
+        try {
+            if (File.Exists(DefaultConfigFile))
+            {
+                return FromFile(DefaultConfigFile);
+            }
 
-        return FromUserSecrets();
+            Console.WriteLine($"Semantic kernel settings '{DefaultConfigFile}' not found, attempting to load configuration from user secrets.");
+
+            return FromUserSecrets();
+        } 
+        catch (InvalidDataException ide)
+        {
+            Console.Error.WriteLine(
+                "Unable to load semantic kernel settings, please provide configuration settings using instructions in the README.\n" +
+                "Please refer to: https://github.com/microsoft/semantic-kernel-starters/blob/main/sk-csharp-azure-functions/README.md#configuring-the-starter"
+            );
+            throw new InvalidOperationException(ide.Message);
+        }
     }
 
     /// <summary>
@@ -61,7 +71,7 @@ internal class KernelSettings
             .Build();
 
         return configuration.Get<KernelSettings>()
-               ?? throw new InvalidDataException($"Invalid semantic kernel settings '{configFile}', please provide configuration settings using instructions in the README.");
+               ?? throw new InvalidDataException($"Invalid semantic kernel settings in '{configFile}', please provide configuration settings using instructions in the README.");
     }
 
     /// <summary>
@@ -74,6 +84,6 @@ internal class KernelSettings
             .Build();
 
         return configuration.Get<KernelSettings>()
-               ?? throw new InvalidDataException("Invalid semantic kernel settings, please provide configuration settings using instructions in the README.");
+               ?? throw new InvalidDataException("Invalid semantic kernel settings in user secrets, please provide configuration settings using instructions in the README.");
     }
 }

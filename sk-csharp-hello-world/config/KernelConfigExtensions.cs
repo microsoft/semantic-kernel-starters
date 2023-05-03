@@ -1,6 +1,4 @@
-﻿// Copyright (c) Microsoft. All rights reserved.
-
-using Microsoft.SemanticKernel;
+﻿using Microsoft.SemanticKernel;
 
 internal static class KernelConfigExtensions
 {
