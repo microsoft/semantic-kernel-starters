@@ -26,7 +26,7 @@ public static class Program
             })
             .ConfigureServices(services =>
             {
-                services.AddSingleton<IOpenApiConfigurationOptions>(_ => apiConfigOptions);
+                services.AddSingleton<IOpenApiConfigurationOptions>(_ => s_apiConfigOptions);
                 services.AddTransient((provider) => CreateKernel(provider));
 
 
@@ -59,7 +59,7 @@ public static class Program
         return new KernelBuilder().WithLogger(loggerFactory.CreateLogger<IKernel>()).WithConfiguration(kernelConfig).Build();
     }
 
-    private static OpenApiConfigurationOptions apiConfigOptions = new OpenApiConfigurationOptions()
+    private static OpenApiConfigurationOptions s_apiConfigOptions = new OpenApiConfigurationOptions()
     {
         Info = new OpenApiInfo()
         {
