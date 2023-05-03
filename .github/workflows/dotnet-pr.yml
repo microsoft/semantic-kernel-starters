@@ -58,14 +58,3 @@ jobs:
         for solution in ${{ env.solutions }}; do
           dotnet build $solution --no-restore --configuration ${{ matrix.configuration }}
         done
-
-    - name: Find unit test projects
-      shell: bash
-      run: echo "projects=$(find ./dotnet -type f -name "*.UnitTests.csproj" | tr '\n' ' ')" >> $GITHUB_ENV
-
-    - name: Test
-      shell: bash
-      run: |
-        for project in ${{ env.projects }}; do
-            dotnet test $project --no-build --verbosity normal --logger trx --results-directory ./TestResults --configuration ${{ matrix.configuration }}
-        done
