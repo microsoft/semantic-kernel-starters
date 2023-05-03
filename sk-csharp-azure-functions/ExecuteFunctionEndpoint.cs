@@ -2,12 +2,12 @@
 
 using System.Net;
 using System.Text.Json;
-using Microsoft.Azure.Functions.Worker.Http;
 using Microsoft.Azure.Functions.Worker;
+using Microsoft.Azure.Functions.Worker.Http;
 using Microsoft.Azure.WebJobs.Extensions.OpenApi.Core.Attributes;
 using Microsoft.SemanticKernel;
-using Microsoft.SemanticKernel.Orchestration;
 using Microsoft.SemanticKernel.KernelExtensions;
+using Microsoft.SemanticKernel.Orchestration;
 using Models;
 
 public class ExecuteFunctionEndpoint
@@ -42,8 +42,8 @@ public class ExecuteFunctionEndpoint
 
         // note: using skills from the repo
         var skillsDirectory = Path.Combine(System.IO.Directory.GetCurrentDirectory(), "skills");
-        var skill = _kernel.ImportSemanticSkillFromDirectory(skillsDirectory, skillName);
-        
+        var skill = this._kernel.ImportSemanticSkillFromDirectory(skillsDirectory, skillName);
+
         var function = skill[functionName];
         if (function == null)
         {
@@ -56,7 +56,7 @@ public class ExecuteFunctionEndpoint
             context.Set(v.Key, v.Value);
         }
 
-        var result = await _kernel.RunAsync(context, function).ConfigureAwait(false);
+        var result = await this._kernel.RunAsync(context, function).ConfigureAwait(false);
 
         return await CreateResponseAsync(requestData, HttpStatusCode.OK, new ExecuteFunctionResponse() { Response = result.ToString() }).ConfigureAwait(false);
     }
