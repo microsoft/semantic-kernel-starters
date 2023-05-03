@@ -33,7 +33,7 @@ public class HealthEndpoint
         if (this._kernel == null)
         {
             code = HttpStatusCode.InternalServerError;
-            message = "Missing kernel";
+            message = "Kernel could not be initialised.";
         }
 
         var rep = req.CreateResponse(code);
