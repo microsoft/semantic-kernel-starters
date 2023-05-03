@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
+#pragma warning disable CA1812
 internal class KernelSettings
 {
     public const string DefaultConfigFile = "config/appsettings.json";
@@ -48,7 +49,7 @@ internal class KernelSettings
         {
             Console.Error.WriteLine(
                 "Unable to load semantic kernel settings, please provide configuration settings using instructions in the README.\n" +
-                "Please refer to: https://github.com/microsoft/semantic-kernel-starters/blob/main/sk-csharp-hello-world/README.md#configuring-the-starter"
+                "Please refer to: https://github.com/microsoft/semantic-kernel-starters/blob/main/sk-csharp-azure-functions/README.md#configuring-the-starter"
             );
             throw new InvalidOperationException(ide.Message);
         }
