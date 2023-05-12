@@ -34,7 +34,8 @@ internal class KernelSettings
     /// </summary>
     internal static KernelSettings LoadSettings()
     {
-        try {
+        try
+        {
             if (File.Exists(DefaultConfigFile))
             {
                 return FromFile(DefaultConfigFile);
@@ -43,7 +44,7 @@ internal class KernelSettings
             Console.WriteLine($"Semantic kernel settings '{DefaultConfigFile}' not found, attempting to load configuration from user secrets.");
 
             return FromUserSecrets();
-        } 
+        }
         catch (InvalidDataException ide)
         {
             Console.Error.WriteLine(
