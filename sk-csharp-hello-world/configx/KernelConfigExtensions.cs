@@ -13,11 +13,11 @@ internal static class KernelConfigExtensions
         switch (kernelSettings.ServiceType.ToUpperInvariant())
         {
             case KernelSettings.AzureOpenAI:
-                kernelConfig.AddAzureTextCompletionService(kernelSettings.ServiceId, kernelSettings.DeploymentOrModelId, kernelSettings.Endpoint, kernelSettings.ApiKey);
+                kernelConfig.AddAzureTextCompletionService(deploymentName: kernelSettings.DeploymentOrModelId, endpoint: kernelSettings.Endpoint, apiKey: kernelSettings.ApiKey, serviceId: kernelSettings.ServiceId);
                 break;
 
             case KernelSettings.OpenAI:
-                kernelConfig.AddOpenAITextCompletionService(kernelSettings.ServiceId, kernelSettings.DeploymentOrModelId, kernelSettings.ApiKey, kernelSettings.OrgId);
+                kernelConfig.AddOpenAITextCompletionService(modelId: kernelSettings.DeploymentOrModelId, apiKey: kernelSettings.ApiKey, orgId: kernelSettings.OrgId, serviceId: kernelSettings.ServiceId);
                 break;
 
             default:
