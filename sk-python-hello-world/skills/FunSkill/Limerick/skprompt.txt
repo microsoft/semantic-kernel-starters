@@ -24,4 +24,4 @@ that weird little boy named Dan.
 
 Now write a very funny limerick about {{$name}}.
 {{$input}}
-Invent new facts their life. Must be funny.
+Invent new facts about their life. Must be funny.

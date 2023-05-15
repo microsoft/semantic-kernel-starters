@@ -36,5 +36,5 @@ To build and run the console application from the terminal use the following com
 
 ```powershell
 poetry install
-poetry run python hello-world/main.py
+poetry run python hello_world/main.py
 ```
