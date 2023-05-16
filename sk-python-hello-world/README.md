@@ -16,7 +16,7 @@ Make sure you have an
 [Open AI API Key](https://openai.com/api/) or
 [Azure Open AI service key](https://learn.microsoft.com/azure/cognitive-services/openai/quickstart?pivots=rest-api)
 
-Copy those keys into the `.env` file:
+Copy the `.env.example` file to a new file named `.env`. Theb, copy those keys into the `.env` file:
 
 ```
 OPENAI_API_KEY=""
@@ -28,9 +28,8 @@ AZURE_OPENAI_API_KEY=""
 
 ## Running the starter
 
-To install dependencies and create a virtual environment, run `poetry install`.
-
-To run the console application just hit `F5`. You may need to select the poetry interpreter created by poetry.
+To run the console application within Visual Studio Code, just hit `F5`.
+As configured in `launch.json` and `tasks.json`, Visual Studio Code will run `poetry install` followed by `python hello_world/main.py`
 
 To build and run the console application from the terminal use the following commands:
 

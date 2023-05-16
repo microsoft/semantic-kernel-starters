@@ -4,7 +4,7 @@ version = "0.1.0"
 description = "A starter application using the semantic kernel"
 authors = ["Microsoft <SK-Support@microsoft.com>"]
 readme = "README.md"
-packages = [{include = "hello-world"}]
+packages = [{include = "hello_world"}]
 
 [tool.poetry.dependencies]
 python = "^3.8"

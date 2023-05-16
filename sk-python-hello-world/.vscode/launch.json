@@ -11,7 +11,8 @@
             "cwd": "${workspaceFolder}",
             "program": "hello_world/main.py", // or ${file} for the current file
             "console": "integratedTerminal",
-            "justMyCode": true
+            "justMyCode": true,
+            "preLaunchTask": "install"
         }
     ]
 }

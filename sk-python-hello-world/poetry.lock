@@ -658,14 +658,14 @@ use-chardet-on-py3 = ["chardet (>=3.0.2,<6)"]
 
 [[package]]
 name = "semantic-kernel"
-version = "0.2.7.dev0"
+version = "0.2.8.dev0"
 description = ""
 category = "main"
 optional = false
 python-versions = ">=3.8,<4.0"
 files = [
-    {file = "semantic_kernel-0.2.7.dev0-py3-none-any.whl", hash = "sha256:bdb5348c83b8e905cba28b18dd145baaeecf6ae35084f79424ce44eaea872f80"},
-    {file = "semantic_kernel-0.2.7.dev0.tar.gz", hash = "sha256:13e6daffaaaffd8cd4f1c6a5b3355db66de9283cb56063dacee3487622fe74e1"},
+    {file = "semantic_kernel-0.2.8.dev0-py3-none-any.whl", hash = "sha256:291e1675645f25a1e769e7a7f077a366c4d73cef006ebec31d7bb609105d523d"},
+    {file = "semantic_kernel-0.2.8.dev0.tar.gz", hash = "sha256:5697dc2cd28c5f6fff9b0cf9ed854027af31a4d5b66c76d1307b2e98111daa68"},
 ]
 
 [package.dependencies]
