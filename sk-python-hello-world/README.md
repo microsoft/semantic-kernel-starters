@@ -16,7 +16,7 @@ Make sure you have an
 [Open AI API Key](https://openai.com/api/) or
 [Azure Open AI service key](https://learn.microsoft.com/azure/cognitive-services/openai/quickstart?pivots=rest-api)
 
-Copy the `.env.example` file to a new file named `.env`. Theb, copy those keys into the `.env` file:
+Copy the `.env.example` file to a new file named `.env`. Then, copy those keys into the `.env` file:
 
 ```
 OPENAI_API_KEY=""
