@@ -11,10 +11,10 @@ The `sk-csharp-azure-functions` Azure Functions application demonstrates how to 
 
 ## Configuring the starter
 
-The starter can be configured in two ways:
+The starter can be configured by using either:
 
-1. Using .NET Secret Manager
-1. Using appsettings.json
+- Enter secrets at the command line with [.NET Secret Manager](#using-net-secret-manager)
+- Enter secrets in [appsettings.json](#using-appsettingsjson)
 
 For Debugging the console application alone, we suggest using .NET [Secret Manager](https://learn.microsoft.com/en-us/aspnet/core/security/app-secrets) to avoid the risk of leaking secrets into the repository, branches and pull requests.
 
