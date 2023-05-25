@@ -40,3 +40,11 @@ python -m venv .venv
 .venv\Scripts\activate
 func host start
 ```
+
+## Using the starter
+
+In your browser, visit `http://localhost:7071/api/skills/{skill_name/functions/{function_name}` to execute a skill.
+For example, `http://localhost:7071/api/skills/FunSkill/functions/Joke` will execute the example Joke function in the FunSkill skill.
+
+To provide input, send a POST request with a JSON body, e.g. provide this as input to the Joke function:
+`{"input": "time traveling to dinosaur age", "style": "deadpan"}`
