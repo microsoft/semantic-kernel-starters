@@ -1,11 +1,12 @@
 # Semantic Kernel Python Hello World Starter
 
-The `sk-python-azure-functions` console application demonstrates how to execute a semantic function.
+The `sk-python-azure-functions` application demonstrates how to execute a semantic function within an Azure Function.
 
 ## Prerequisites
 
 - [Python](https://www.python.org/downloads/) >=3.8 and <3.11
-  - [Poetry](https://python-poetry.org/) is used for packaging and dependency management
+- [Azure Functions](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azurefunctions)
+- [Azurite](https://marketplace.visualstudio.com/items?itemName=Azurite.azurite). Run the services from the VS Code status bar.
   - [Semantic Kernel Tools](https://marketplace.visualstudio.com/items?itemName=ms-semantic-kernel.semantic-kernel)
 
 ## Configuring the starter
@@ -29,11 +30,13 @@ AZURE_OPENAI_API_KEY=""
 ## Running the starter
 
 To run the console application within Visual Studio Code, just hit `F5`.
-As configured in `launch.json` and `tasks.json`, Visual Studio Code will run `poetry install` followed by `python hello_world/main.py`
+As configured in `launch.json` and `tasks.json`, Visual Studio Code will create a virtual environment at `.venv` and run `pip install requirements.txt`.
 
-To build and run the console application from the terminal use the following commands:
+To run from command line, run the following:
 
-```powershell
-poetry install
-poetry run python hello_world/main.py
+```
+python -m venv .venv
+.venv\Scripts\python -m pip install -r requirements.txt # Location of python within venv depends on OS
+.venv\Scripts\activate
+func host start
 ```
