@@ -126,7 +126,6 @@ dmypy.json
 bin
 obj
 appsettings.json
-local.settings.json
 
 # Azurite artifacts
 __blobstorage__

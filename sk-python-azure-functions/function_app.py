@@ -10,7 +10,7 @@ from semantic_kernel.connectors.ai.open_ai import (
 )
 from semantic_kernel.orchestration.context_variables import ContextVariables
 
-useAzureOpenAI = False
+useAzureOpenAI = True
 
 app = func.FunctionApp(http_auth_level=func.AuthLevel.ANONYMOUS)
 
@@ -82,7 +82,3 @@ def create_kernel():
         )
 
     return kernel
-
-# Write an async function that prints hello world
-async def hello_world():
-    logging.info("Hello world!")

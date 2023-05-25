@@ -29,7 +29,7 @@ AZURE_OPENAI_API_KEY=""
 
 ## Running the starter
 
-To run the console application within Visual Studio Code, just hit `F5`.
+To run the console application within Visual Studio Code, run Azurite from the status bar or command pallette, then just hit `F5`.
 As configured in `launch.json` and `tasks.json`, Visual Studio Code will create a virtual environment at `.venv` and run `pip install requirements.txt`.
 
 To run from command line, run the following:
