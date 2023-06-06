@@ -400,3 +400,4 @@ FodyWeavers.xsd
 # Semantic Kernel
 .semantic-kernel
 appsettings.json
+.DS_Store
