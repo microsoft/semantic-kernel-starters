@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
+#pragma warning disable CA1812
 internal class KernelSettings
 {
     public const string DefaultConfigFile = "config/appsettings.json";
