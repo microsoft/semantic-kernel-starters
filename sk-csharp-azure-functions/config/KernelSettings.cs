@@ -6,8 +6,6 @@ using Microsoft.Extensions.Logging;
 internal class KernelSettings
 {
     public const string DefaultConfigFile = "config/appsettings.json";
-    public const string OpenAI = "OPENAI";
-    public const string AzureOpenAI = "AZUREOPENAI";
 
     [JsonPropertyName("serviceType")]
     public string ServiceType { get; set; } = string.Empty;
@@ -50,7 +48,7 @@ internal class KernelSettings
         {
             Console.Error.WriteLine(
                 "Unable to load semantic kernel settings, please provide configuration settings using instructions in the README.\n" +
-                "Please refer to: https://github.com/microsoft/semantic-kernel-starters/blob/main/sk-csharp-azure-functions/README.md#configuring-the-starter"
+                "Please refer to: https://github.com/microsoft/semantic-kernel-starters/blob/main/sk-csharp-hello-world/README.md#configuring-the-starter"
             );
             throw new InvalidOperationException(ide.Message);
         }
