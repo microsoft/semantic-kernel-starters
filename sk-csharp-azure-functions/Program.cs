@@ -55,7 +55,7 @@ public static class Program
 
         return new KernelBuilder()
             .WithLogger(loggerFactory.CreateLogger<IKernel>())
-            .WithCompletionBackend(kernelSettings)
+            .WithCompletionService(kernelSettings)
             .Build();
     }
 

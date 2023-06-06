@@ -8,7 +8,7 @@ internal static class KernelBuilderExtensions
     /// <param name="kernelBuilder"></param>
     /// <param name="kernelSettings"></param>
     /// <exception cref="ArgumentException"></exception>
-    internal static KernelBuilder WithCompletionBackend(this KernelBuilder kernelBuilder, KernelSettings kernelSettings)
+    internal static KernelBuilder WithCompletionService(this KernelBuilder kernelBuilder, KernelSettings kernelSettings)
     {
         switch (kernelSettings.ServiceType.ToUpperInvariant())
         {

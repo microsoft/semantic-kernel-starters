@@ -15,7 +15,7 @@ using ILoggerFactory loggerFactory = LoggerFactory.Create(builder =>
 
 IKernel kernel = new KernelBuilder()
     .WithLogger(loggerFactory.CreateLogger<IKernel>())
-    .WithCompletionBackend(kernelSettings)
+    .WithCompletionService(kernelSettings)
     .Build();
 
 if (kernelSettings.EndpointType == EndpointTypes.TextCompletion)
