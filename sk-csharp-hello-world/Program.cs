@@ -1,11 +1,9 @@
 ﻿using Microsoft.Extensions.Logging;
 using Microsoft.SemanticKernel;
+using Microsoft.SemanticKernel.AI.ChatCompletion;
 using Microsoft.SemanticKernel.Orchestration;
 
 var kernelSettings = KernelSettings.LoadSettings();
-
-var kernelConfig = new KernelConfig();
-kernelConfig.AddCompletionBackend(kernelSettings);
 
 using ILoggerFactory loggerFactory = LoggerFactory.Create(builder =>
 {
@@ -15,16 +13,33 @@ using ILoggerFactory loggerFactory = LoggerFactory.Create(builder =>
         .AddDebug();
 });
 
-IKernel kernel = new KernelBuilder().WithLogger(loggerFactory.CreateLogger<IKernel>()).WithConfiguration(kernelConfig).Build();
+IKernel kernel = new KernelBuilder()
+    .WithLogger(loggerFactory.CreateLogger<IKernel>())
+    .WithCompletionBackend(kernelSettings)
+    .Build();
 
-// note: using skills from the repo
-var skillsDirectory = Path.Combine(System.IO.Directory.GetCurrentDirectory(), "skills");
-var skill = kernel.ImportSemanticSkillFromDirectory(skillsDirectory, "FunSkill");
+if (kernelSettings.EndpointType == EndpointTypes.TextCompletion)
+{
+    // note: using skills from the repo
+    var skillsDirectory = Path.Combine(System.IO.Directory.GetCurrentDirectory(), "skills");
+    var skill = kernel.ImportSemanticSkillFromDirectory(skillsDirectory, "FunSkill");
 
-var context = new ContextVariables();
-context.Set("input", "Time travel to dinosaur age");
-context.Set("style", "Wacky");
+    var context = new ContextVariables();
+    context.Set("input", "Time travel to dinosaur age");
+    context.Set("style", "Wacky");
 
-var result = await kernel.RunAsync(context, skill["Joke"]);
+    var result = await kernel.RunAsync(context, skill["Joke"]);
+    Console.WriteLine(result);
+}
+else if (kernelSettings.EndpointType == EndpointTypes.ChatCompletion)
+{
+    var chatCompletionService = kernel.GetService<IChatCompletion>();
 
-Console.WriteLine(result);
+    var chat = chatCompletionService.CreateNewChat("You are an AI assistant that helps people find information.");
+    chat.AddMessage(ChatHistory.AuthorRoles.User, "Hi, what information can yo provide for me?");
+
+    string response = await chatCompletionService.GenerateMessageAsync(chat, new ChatRequestSettings());
+    Console.WriteLine(response);
+}
+
+

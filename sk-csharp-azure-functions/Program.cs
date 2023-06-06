@@ -45,9 +45,6 @@ public static class Program
     {
         var kernelSettings = KernelSettings.LoadSettings();
 
-        var kernelConfig = new KernelConfig();
-        kernelConfig.AddCompletionBackend(kernelSettings);
-
         using ILoggerFactory loggerFactory = LoggerFactory.Create(builder =>
         {
             builder
@@ -56,7 +53,10 @@ public static class Program
                 .AddDebug();
         });
 
-        return new KernelBuilder().WithLogger(loggerFactory.CreateLogger<IKernel>()).WithConfiguration(kernelConfig).Build();
+        return new KernelBuilder()
+            .WithLogger(loggerFactory.CreateLogger<IKernel>())
+            .WithCompletionBackend(kernelSettings)
+            .Build();
     }
 
     private static readonly OpenApiConfigurationOptions s_apiConfigOptions = new()

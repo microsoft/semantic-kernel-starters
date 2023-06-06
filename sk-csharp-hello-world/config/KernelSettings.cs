@@ -5,8 +5,9 @@ using Microsoft.Extensions.Logging;
 internal class KernelSettings
 {
     public const string DefaultConfigFile = "config/appsettings.json";
-    public const string OpenAI = "OPENAI";
-    public const string AzureOpenAI = "AZUREOPENAI";
+
+    [JsonPropertyName("endpointType")]
+    public string EndpointType { get; set; } = EndpointTypes.TextCompletion;
 
     [JsonPropertyName("serviceType")]
     public string ServiceType { get; set; } = string.Empty;
