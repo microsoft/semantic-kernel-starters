@@ -11,22 +11,22 @@ using Microsoft.SemanticKernel.SkillDefinition;
 /// </summary>
 internal class ConsoleGPTService : IHostedService
 {
-    private readonly IKernel _semanticKernel;
-    private readonly IDictionary<string, ISKFunction> _consoleSkill;
-    private readonly IDictionary<string, ISKFunction> _chatSkill;
-    private readonly IHostApplicationLifetime _lifeTime;
+    private readonly IKernel semanticKernel;
+    private readonly IDictionary<string, ISKFunction> consoleSkill;
+    private readonly IDictionary<string, ISKFunction> chatSkill;
+    private readonly IHostApplicationLifetime lifeTime;
 
     public ConsoleGPTService(IKernel semanticKernel,
                              ConsoleSkill consoleSkill,
                              ChatSkill chatSkill,
                              IHostApplicationLifetime lifeTime)
     {
-        _semanticKernel = semanticKernel;
-        _lifeTime = lifeTime;
+        this.semanticKernel = semanticKernel;
+        this.lifeTime = lifeTime;
 
         // Import the skills to load the semantic kernel functions
-        _consoleSkill = _semanticKernel.ImportSkill(consoleSkill);
-        _chatSkill = _semanticKernel.ImportSkill(chatSkill);
+        this.consoleSkill = this.semanticKernel.ImportSkill(consoleSkill);
+        this.chatSkill = this.semanticKernel.ImportSkill(chatSkill);
     }
 
     /// <summary>
@@ -49,29 +49,29 @@ internal class ConsoleGPTService : IHostedService
     private async Task ExecuteAsync(CancellationToken cancellationToken)
     {
         // Write to the console that the conversation is beginning
-        await _semanticKernel.RunAsync("Hello. Ask me a question or say goodbye to exit.", _consoleSkill["Respond"]);
+        await this.semanticKernel.RunAsync("Hello. Ask me a question or say goodbye to exit.", this.consoleSkill["Respond"]);
 
         // Loop till we are cancelled
         while (!cancellationToken.IsCancellationRequested)
         {
             // Create our pipeline
-            ISKFunction[] pipeline = {_consoleSkill["Listen"], _chatSkill["Prompt"], _consoleSkill["Respond"]};
+            ISKFunction[] pipeline = {this.consoleSkill["Listen"], this.chatSkill["Prompt"], this.consoleSkill["Respond"]};
 
             // Run the pipeline
-            await _semanticKernel.RunAsync(pipeline);
+            await this.semanticKernel.RunAsync(pipeline);
             
             // Did we say goodbye? If so, exit
-            var goodbyeContext = await _semanticKernel.RunAsync(_consoleSkill["IsGoodbye"]);
+            var goodbyeContext = await this.semanticKernel.RunAsync(this.consoleSkill["IsGoodbye"]);
             var isGoodbye = bool.Parse(goodbyeContext.Result);
 
             // If the user says goodbye, end the chat
             if (isGoodbye)
             {
                 // Log the history so we can see the prompts used
-                await _semanticKernel.RunAsync(_chatSkill["LogChatHistory"]);
+                await this.semanticKernel.RunAsync(this.chatSkill["LogChatHistory"]);
 
                 // Stop the application
-                _lifeTime.StopApplication();
+                this.lifeTime.StopApplication();
                 break;
             }
         }

@@ -10,15 +10,15 @@ namespace Skills;
 /// </summary>
 internal class ChatSkill
 {
-    private readonly IChatCompletion _chatCompletion;
-    private readonly ChatHistory _chatHistory;
+    private readonly IChatCompletion chatCompletion;
+    private readonly ChatHistory chatHistory;
     
     public ChatSkill(IKernel kernel, KernelSettings kernelSettings)
     {
         // Set up the chat completion and history - the history is used to keep track of the conversation
         // and is part of the prompt sent to ChatGPT to allow a continuous conversation
-        _chatCompletion = kernel.GetService<IChatCompletion>();
-        _chatHistory = _chatCompletion.CreateNewChat(kernelSettings.SystemPrompt);
+        this.chatCompletion = kernel.GetService<IChatCompletion>();
+        this.chatHistory = this.chatCompletion.CreateNewChat(kernelSettings.SystemPrompt);
     }
 
     /// <summary>
@@ -33,11 +33,11 @@ internal class ChatSkill
         {
             // Add the question as a user message to the chat history, then send everything to OpenAI.
             // The chat history is used as context for the prompt
-            _chatHistory.AddMessage(ChatHistory.AuthorRoles.User, prompt);
-            reply = await _chatCompletion.GenerateMessageAsync(_chatHistory);
+            this.chatHistory.AddMessage(ChatHistory.AuthorRoles.User, prompt);
+            reply = await this.chatCompletion.GenerateMessageAsync(this.chatHistory);
 
             // Add the interaction to the chat history.
-            _chatHistory.AddMessage(ChatHistory.AuthorRoles.Assistant, reply);
+            this.chatHistory.AddMessage(ChatHistory.AuthorRoles.Assistant, reply);
         }
         catch (AIException aiex)
         {
@@ -61,7 +61,7 @@ internal class ChatSkill
         Console.WriteLine();
 
         // Log the chat history including system, user and assistant (AI) messages
-        foreach (var message in _chatHistory.Messages)
+        foreach (var message in this.chatHistory.Messages)
         {
             // Depending on the role, use a different color
             var role = "None:      ";

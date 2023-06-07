@@ -8,7 +8,7 @@ namespace Skills;
 /// </summary>
 internal class ConsoleSkill
 {
-    private bool _isGoodbye = false;
+    private bool isGoodbye = false;
 
     /// <summary>
     /// Gets input from the console
@@ -26,7 +26,7 @@ internal class ConsoleSkill
             }
 
             if (line.ToLower().StartsWith("goodbye"))
-                _isGoodbye = true;
+                this.isGoodbye = true;
 
             return line;
         });
@@ -52,7 +52,7 @@ internal class ConsoleSkill
     [SKFunctionName("IsGoodbye")]
     public Task<string> IsGoodbye(SKContext context)
     {
-        return Task.FromResult(_isGoodbye ? "true" : "false");
+        return Task.FromResult(this.isGoodbye ? "true" : "false");
     }
 
     /// <summary>
