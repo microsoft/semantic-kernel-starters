@@ -1,4 +1,4 @@
-using Microsoft.SemanticKernel;
+﻿using Microsoft.SemanticKernel;
 using Microsoft.SemanticKernel.AI;
 using Microsoft.SemanticKernel.AI.ChatCompletion;
 using Microsoft.SemanticKernel.SkillDefinition;
@@ -10,15 +10,15 @@ namespace Skills;
 /// </summary>
 internal class ChatSkill
 {
-    private readonly IChatCompletion chatCompletion;
-    private readonly ChatHistory chatHistory;
-    
+    private readonly IChatCompletion _chatCompletion;
+    private readonly ChatHistory _chatHistory;
+
     public ChatSkill(IKernel kernel, KernelSettings kernelSettings)
     {
         // Set up the chat completion and history - the history is used to keep track of the conversation
         // and is part of the prompt sent to ChatGPT to allow a continuous conversation
-        this.chatCompletion = kernel.GetService<IChatCompletion>();
-        this.chatHistory = this.chatCompletion.CreateNewChat(kernelSettings.SystemPrompt);
+        this._chatCompletion = kernel.GetService<IChatCompletion>();
+        this._chatHistory = this._chatCompletion.CreateNewChat(kernelSettings.SystemPrompt);
     }
 
     /// <summary>
@@ -26,18 +26,18 @@ internal class ChatSkill
     /// </summary>
     [SKFunction("Send a prompt to the LLM.")]
     [SKFunctionName("Prompt")]
-    public async Task<string> Prompt(string prompt)
+    public async Task<string> PromptAsync(string prompt)
     {
         var reply = string.Empty;
         try
         {
             // Add the question as a user message to the chat history, then send everything to OpenAI.
             // The chat history is used as context for the prompt
-            this.chatHistory.AddMessage(ChatHistory.AuthorRoles.User, prompt);
-            reply = await this.chatCompletion.GenerateMessageAsync(this.chatHistory);
+            this._chatHistory.AddMessage(ChatHistory.AuthorRoles.User, prompt);
+            reply = await this._chatCompletion.GenerateMessageAsync(this._chatHistory);
 
             // Add the interaction to the chat history.
-            this.chatHistory.AddMessage(ChatHistory.AuthorRoles.Assistant, reply);
+            this._chatHistory.AddMessage(ChatHistory.AuthorRoles.Assistant, reply);
         }
         catch (AIException aiex)
         {
@@ -61,7 +61,7 @@ internal class ChatSkill
         Console.WriteLine();
 
         // Log the chat history including system, user and assistant (AI) messages
-        foreach (var message in this.chatHistory.Messages)
+        foreach (var message in this._chatHistory.Messages)
         {
             // Depending on the role, use a different color
             var role = "None:      ";

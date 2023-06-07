@@ -1,4 +1,4 @@
-using Microsoft.SemanticKernel.Orchestration;
+﻿using Microsoft.SemanticKernel.Orchestration;
 using Microsoft.SemanticKernel.SkillDefinition;
 
 namespace Skills;
@@ -8,16 +8,17 @@ namespace Skills;
 /// </summary>
 internal class ConsoleSkill
 {
-    private bool isGoodbye = false;
+    private bool _isGoodbye = false;
 
     /// <summary>
     /// Gets input from the console
     /// </summary>
     [SKFunction("Get console input.")]
     [SKFunctionName("Listen")]
-    public Task<string> Listen(SKContext context)
+    public Task<string> ListenAsync(SKContext context)
     {
-        return Task.Run(() => {
+        return Task.Run(() =>
+        {
             var line = "";
 
             while (string.IsNullOrWhiteSpace(line))
@@ -26,7 +27,9 @@ internal class ConsoleSkill
             }
 
             if (line.ToLower().StartsWith("goodbye"))
-                this.isGoodbye = true;
+            {
+                this._isGoodbye = true;
+            }
 
             return line;
         });
@@ -37,10 +40,11 @@ internal class ConsoleSkill
     /// </summary>
     [SKFunction("Write a response to the console.")]
     [SKFunctionName("Respond")]
-    public Task<string> Respond(string message, SKContext context)
+    public Task<string> RespondAsync(string message, SKContext context)
     {
-        return Task.Run(() => {
-            WriteAIResponse(message);
+        return Task.Run(() =>
+        {
+            this.WriteAIResponse(message);
             return message;
         });
     }
@@ -50,9 +54,9 @@ internal class ConsoleSkill
     /// </summary>
     [SKFunction("Did the user say goodbye.")]
     [SKFunctionName("IsGoodbye")]
-    public Task<string> IsGoodbye(SKContext context)
+    public Task<string> IsGoodbyeAsync(SKContext context)
     {
-        return Task.FromResult(this.isGoodbye ? "true" : "false");
+        return Task.FromResult(this._isGoodbye ? "true" : "false");
     }
 
     /// <summary>
