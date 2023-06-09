@@ -1,0 +1,8 @@
+{
+  "serviceType": "AzureOpenAI",
+  "serviceId": "gpt-35-turbo",
+  "deploymentOrModelId": "gpt-35-turbo",
+  "endpoint": "https:// ... your endpoint ... .openai.azure.com/",
+  "apiKey": "... your Azure OpenAI key ...",
+  "systemPrompt": "You are a friendly, intelligent, and curious assistant who is good at conversation."
+}

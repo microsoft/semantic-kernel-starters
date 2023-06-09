@@ -1,0 +1,8 @@
+{
+  "serviceType": "OpenAI",
+  "serviceId": "gpt-3.5-turbo",
+  "deploymentOrModelId": "gpt-3.5-turbo",
+  "apiKey": "... your OpenAI key ...",
+  "orgId": "",
+  "systemPrompt": "You are a friendly, intelligent, and curious assistant who is good at conversation."
+}
