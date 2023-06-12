@@ -12,7 +12,7 @@ Alternatively, you can use the [Semantic Kernel Tools](https://marketplace.visua
 ## Getting Started
 
 - [C# Hello World](sk-csharp-hello-world): The Hello World C# console application starter for the Semantic Kernel.
-- [C# Console GPT](sk-csharp-console-gpt): A console application based ChatGPT clone starter for the Semantic Kernel.
+- [C# Console Chat](sk-csharp-console-chat): A console application based ChatGPT clone starter for the Semantic Kernel.
 - [C# Azure Functions](sk-csharp-azure-functions): The Hello World C# Azure Functions starter for the Semantic Kernel.
 - [Python Hello World](sk-python-hello-world): The Hello World Python console application starter for the Semantic Kernel.
 - [Python Azure Functions](sk-python-azure-functions): The Hello World Python Azure Functions starter for the Semantic Kernel.
