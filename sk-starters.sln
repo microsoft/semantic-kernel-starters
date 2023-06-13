@@ -7,7 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "sk-csharp-azure-functions",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "sk-csharp-hello-world", "sk-csharp-hello-world\sk-csharp-hello-world.csproj", "{71EFD4A3-559B-47E9-8C18-CFF38C0DDA6F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "console-gpt", "sk-csharp-console-chat\sk-csharp-console-chat.csproj", "{CA34788F-6FFC-42F8-A539-2692F912262F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "sk-csharp-console-chat", "sk-csharp-console-chat\sk-csharp-console-chat.csproj", "{CA34788F-6FFC-42F8-A539-2692F912262F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "sk_csharp_apim_demo", "sk_csharp_apim_demo\sk_csharp_apim_demo.csproj", "{FC9DF14A-6CCB-42FA-BE38-C61F87C06094}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{CA34788F-6FFC-42F8-A539-2692F912262F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CA34788F-6FFC-42F8-A539-2692F912262F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CA34788F-6FFC-42F8-A539-2692F912262F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FC9DF14A-6CCB-42FA-BE38-C61F87C06094}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC9DF14A-6CCB-42FA-BE38-C61F87C06094}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC9DF14A-6CCB-42FA-BE38-C61F87C06094}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC9DF14A-6CCB-42FA-BE38-C61F87C06094}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
