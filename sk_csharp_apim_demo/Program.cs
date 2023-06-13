@@ -17,12 +17,18 @@ using ILoggerFactory loggerFactory = LoggerFactory.Create(builder =>
         .AddDebug();
 });
 
+var httpClient = new HttpClient();
+httpClient.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", "<subscription key>");
+
 IKernel kernel = new KernelBuilder()
     .WithLogger(loggerFactory.CreateLogger<IKernel>())
     .WithAzureTextCompletionService(
         "text-davinci-003",
         "https://apim...api.net/",
-        new BearerTokenCredential(accessToken)
+        new BearerTokenCredential(accessToken),
+        "text-davinci-003",
+        false,
+        httpClient
     )
     .Build();
 
@@ -36,3 +42,5 @@ context.Set("style", "Wacky");
 var result = await kernel.RunAsync(context, skill["Joke"]);
 
 Console.WriteLine(result);
+
+httpClient.Dispose();
