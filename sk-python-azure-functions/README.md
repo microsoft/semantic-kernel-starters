@@ -1,4 +1,4 @@
-# Semantic Kernel Python Hello World Starter
+# Semantic Kernel Python Azure Functions Starter
 
 The `sk-python-azure-functions` application demonstrates how to execute a semantic function within an Azure Function.
 
