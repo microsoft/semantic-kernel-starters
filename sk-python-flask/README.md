@@ -5,8 +5,8 @@ The `sk-python-flask` flask application demonstrates how to execute a semantic f
 ## Prerequisites
 
 - [Python](https://www.python.org/downloads/) 3.8 and above
-  - [Poetry](https://python-poetry.org/) is used for packaging and dependency management
-  - [Semantic Kernel Tools](https://marketplace.visualstudio.com/items?itemName=ms-semantic-kernel.semantic-kernel)
+- [Poetry](https://python-poetry.org/) is used for packaging and dependency management
+- [Semantic Kernel Tools](https://marketplace.visualstudio.com/items?itemName=ms-semantic-kernel.semantic-kernel)
 
 ## Configuring the starter
 
