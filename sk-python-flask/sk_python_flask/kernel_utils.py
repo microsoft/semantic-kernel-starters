@@ -1,6 +1,5 @@
 import os
 import logging
-from typing import List
 import semantic_kernel as sk
 import semantic_kernel.connectors.ai.open_ai as sk_oai
 from semantic_kernel.orchestration.context_variables import ContextVariables
