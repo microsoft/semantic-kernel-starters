@@ -65,13 +65,18 @@ internal class ChatSkill
         {
             // Depending on the role, use a different color
             var role = "None:      ";
-            if (message.Role == AuthorRole.System) {
+            if (message.Role == AuthorRole.System)
+            {
                 role = "System:    ";
                 Console.ForegroundColor = ConsoleColor.Blue;
-            } else if (message.Role == AuthorRole.User) {
+            }
+            else if (message.Role == AuthorRole.User)
+            {
                 role = "User:      ";
                 Console.ForegroundColor = ConsoleColor.Yellow;
-            } else if (message.Role == AuthorRole.Assistant) {
+            }
+            else if (message.Role == AuthorRole.Assistant)
+            {
                 role = "Assistant: ";
                 Console.ForegroundColor = ConsoleColor.Green;
             }
