@@ -36,7 +36,7 @@ else if (kernelSettings.EndpointType == EndpointTypes.ChatCompletion)
     var chatCompletionService = kernel.GetService<IChatCompletion>();
 
     var chat = chatCompletionService.CreateNewChat("You are an AI assistant that helps people find information.");
-    chat.AddMessage(ChatHistory.AuthorRoles.User, "Hi, what information can yo provide for me?");
+    chat.AddMessage(AuthorRole.User, "Hi, what information can yo provide for me?");
 
     string response = await chatCompletionService.GenerateMessageAsync(chat, new ChatRequestSettings());
     Console.WriteLine(response);

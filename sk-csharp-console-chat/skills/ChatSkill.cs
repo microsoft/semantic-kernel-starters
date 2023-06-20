@@ -33,11 +33,11 @@ internal class ChatSkill
         {
             // Add the question as a user message to the chat history, then send everything to OpenAI.
             // The chat history is used as context for the prompt
-            this._chatHistory.AddMessage(ChatHistory.AuthorRoles.User, prompt);
+            this._chatHistory.AddMessage(AuthorRole.User, prompt);
             reply = await this._chatCompletion.GenerateMessageAsync(this._chatHistory);
 
             // Add the interaction to the chat history.
-            this._chatHistory.AddMessage(ChatHistory.AuthorRoles.Assistant, reply);
+            this._chatHistory.AddMessage(AuthorRole.Assistant, reply);
         }
         catch (AIException aiex)
         {
@@ -65,20 +65,20 @@ internal class ChatSkill
         {
             // Depending on the role, use a different color
             var role = "None:      ";
-            switch (message.AuthorRole)
+            if (message.Role == AuthorRole.System)
             {
-                case ChatHistory.AuthorRoles.System:
-                    role = "System:    ";
-                    Console.ForegroundColor = ConsoleColor.Blue;
-                    break;
-                case ChatHistory.AuthorRoles.User:
-                    role = "User:      ";
-                    Console.ForegroundColor = ConsoleColor.Yellow;
-                    break;
-                case ChatHistory.AuthorRoles.Assistant:
-                    role = "Assistant: ";
-                    Console.ForegroundColor = ConsoleColor.Green;
-                    break;
+                role = "System:    ";
+                Console.ForegroundColor = ConsoleColor.Blue;
+            }
+            else if (message.Role == AuthorRole.User)
+            {
+                role = "User:      ";
+                Console.ForegroundColor = ConsoleColor.Yellow;
+            }
+            else if (message.Role == AuthorRole.Assistant)
+            {
+                role = "Assistant: ";
+                Console.ForegroundColor = ConsoleColor.Green;
             }
 
             // Write the role and the message
