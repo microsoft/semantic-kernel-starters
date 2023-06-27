@@ -26,28 +26,38 @@ def create_kernel_for_request(request_headers, skill_name):
     try:
         api_config = headers_to_config(request_headers)
     except ValueError:
-        logging.exception(f"No headers found. Using local .env file for configuration.")
-        try: 
+        logging.exception("No headers found. Using local .env file for configuration.")
+        try:
             api_config = dotenv_to_config()
-        except AssertionError as e:
-            logging.exception(f"No .env file found.")
+        except AssertionError:
+            logging.exception("No .env file found.")
             return None, ("No valid headers found and no .env file found.", 400)
 
     try:
-        if api_config.serviceid == AIService.OPENAI.value or api_config.serviceid == AIService.OPENAI.name:
+        if (
+            api_config.serviceid == AIService.OPENAI.value
+            or api_config.serviceid == AIService.OPENAI.name
+        ):
             # Add an OpenAI backend
             kernel.add_text_completion_service(
                 "dv",
                 sk_oai.OpenAITextCompletion(
-                    model_id=api_config.deployment_model_id, api_key=api_config.key, org_id=api_config.org_id
+                    model_id=api_config.deployment_model_id,
+                    api_key=api_config.key,
+                    org_id=api_config.org_id,
                 ),
             )
-        elif api_config.serviceid == AIService.AZURE_OPENAI.value or api_config.serviceid == AIService.AZURE_OPENAI.name:
+        elif (
+            api_config.serviceid == AIService.AZURE_OPENAI.value
+            or api_config.serviceid == AIService.AZURE_OPENAI.name
+        ):
             # Add an Azure backend
             kernel.add_text_completion_service(
                 "dv",
                 sk_oai.AzureTextCompletion(
-                    deployment_name=api_config.deployment_model_id, api_key=api_config.key, endpoint=api_config.endpoint
+                    deployment_name=api_config.deployment_model_id,
+                    api_key=api_config.key,
+                    endpoint=api_config.endpoint,
                 ),
             )
     except ValueError as e:
@@ -73,7 +83,7 @@ def create_context_variables_from_request(request) -> sk.ContextVariables:
     try:
         req_body = request.get_json()
     except ValueError:
-        logging.warning(f"No JSON body provided in request.")
+        logging.warning("No JSON body provided in request.")
 
     context_variables = ContextVariables()
     for k, v in req_body.items():
