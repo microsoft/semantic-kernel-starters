@@ -1,6 +1,9 @@
 # Semantic Kernel Python Flask Starter
 
 The `sk-python-flask` flask application demonstrates how to execute a semantic function within a Flask backend.
+The application can also be used as a [ChatGPT plugin](https://platform.openai.com/docs/plugins/introduction).
+If not using the starter as a ChatGPT plugin, you may not need the following files and the app routes that serve them:
+`openapi.yaml`, `.well-known/ai-plugin.json`, `logo.png`
 
 ## Prerequisites
 
@@ -51,3 +54,9 @@ A POST endpoint exists at `localhost:5000/skills/{skill_name}/functions/{functio
 For example, send a POST request to `localhost:5000/skills/FunSkill/functions/Joke` with the configuration headers
 and a JSON request body containing your prompt parameters such as:
 `{"input": "time traveling to dinosaur age", "style": "wacky"}`
+
+## Using the starter as a ChatGPT plugin
+
+First, run your Flask app locally.
+Then, follow instructions on the [OpenAI website](https://platform.openai.com/docs/plugins/introduction) to install your plugin into ChatGPT.
+You may need to join a waitlist for developer access.
