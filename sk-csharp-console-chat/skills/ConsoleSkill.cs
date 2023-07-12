@@ -14,7 +14,6 @@ internal class ConsoleSkill
     /// Gets input from the console
     /// </summary>
     [SKFunction("Get console input.")]
-    [SKFunctionName("Listen")]
     public Task<string> ListenAsync(SKContext context)
     {
         return Task.Run(() =>
@@ -39,7 +38,6 @@ internal class ConsoleSkill
     /// Writes output to the console
     /// </summary>
     [SKFunction("Write a response to the console.")]
-    [SKFunctionName("Respond")]
     public Task<string> RespondAsync(string message, SKContext context)
     {
         return Task.Run(() =>
@@ -53,7 +51,6 @@ internal class ConsoleSkill
     /// Checks if the user said goodbye
     /// </summary>
     [SKFunction("Did the user say goodbye.")]
-    [SKFunctionName("IsGoodbye")]
     public Task<string> IsGoodbyeAsync(SKContext context)
     {
         return Task.FromResult(this._isGoodbye ? "true" : "false");
