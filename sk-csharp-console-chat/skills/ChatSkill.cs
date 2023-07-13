@@ -1,4 +1,5 @@
-﻿using Microsoft.SemanticKernel;
+﻿using System.ComponentModel;
+using Microsoft.SemanticKernel;
 using Microsoft.SemanticKernel.AI;
 using Microsoft.SemanticKernel.AI.ChatCompletion;
 using Microsoft.SemanticKernel.SkillDefinition;
@@ -38,7 +39,7 @@ internal class ChatSkill
     /// <summary>
     /// Send a prompt to the LLM.
     /// </summary>
-    [SKFunction("Send a prompt to the LLM.")]
+    [SKFunction, Description("Send a prompt to the LLM.")]
     public async Task<string> PromptAsync(string prompt)
     {
         var reply = string.Empty;
@@ -65,7 +66,7 @@ internal class ChatSkill
     /// Log the history of the chat with the LLM.
     /// This will log the system prompt that configures the chat, along with the user and assistant messages.
     /// </summary>
-    [SKFunction("Log the history of the chat with the LLM.")]
+    [SKFunction, Description("Log the history of the chat with the LLM.")]
     public Task LogChatHistory()
     {
         Console.WriteLine();
