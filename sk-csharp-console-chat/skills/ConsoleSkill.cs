@@ -1,4 +1,5 @@
-﻿using Microsoft.SemanticKernel.Orchestration;
+﻿using System.ComponentModel;
+using Microsoft.SemanticKernel.Orchestration;
 using Microsoft.SemanticKernel.SkillDefinition;
 
 namespace Skills;
@@ -13,8 +14,7 @@ internal class ConsoleSkill
     /// <summary>
     /// Gets input from the console
     /// </summary>
-    [SKFunction("Get console input.")]
-    [SKFunctionName("Listen")]
+    [SKFunction, Description("Get console input.")]
     public Task<string> ListenAsync(SKContext context)
     {
         return Task.Run(() =>
@@ -38,8 +38,7 @@ internal class ConsoleSkill
     /// <summary>
     /// Writes output to the console
     /// </summary>
-    [SKFunction("Write a response to the console.")]
-    [SKFunctionName("Respond")]
+    [SKFunction, Description("Write a response to the console.")]
     public Task<string> RespondAsync(string message, SKContext context)
     {
         return Task.Run(() =>
@@ -52,8 +51,7 @@ internal class ConsoleSkill
     /// <summary>
     /// Checks if the user said goodbye
     /// </summary>
-    [SKFunction("Did the user say goodbye.")]
-    [SKFunctionName("IsGoodbye")]
+    [SKFunction, Description("Did the user say goodbye.")]
     public Task<string> IsGoodbyeAsync(SKContext context)
     {
         return Task.FromResult(this._isGoodbye ? "true" : "false");
