@@ -1,4 +1,4 @@
-# Semantic Kernel Python Hello World Starter
+# Semantic Kernel Python Azure Functions Starter
 
 The `sk-python-azure-functions` application demonstrates how to execute a semantic function within an Azure Function.
 
@@ -7,7 +7,7 @@ The `sk-python-azure-functions` application demonstrates how to execute a semant
 - [Python](https://www.python.org/downloads/) >=3.8 and <3.11
 - [Azure Functions](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azurefunctions)
 - [Azurite](https://marketplace.visualstudio.com/items?itemName=Azurite.azurite). Run the services from the VS Code status bar.
-  - [Semantic Kernel Tools](https://marketplace.visualstudio.com/items?itemName=ms-semantic-kernel.semantic-kernel)
+- [Semantic Kernel Tools](https://marketplace.visualstudio.com/items?itemName=ms-semantic-kernel.semantic-kernel)
 
 ## Configuring the starter
 

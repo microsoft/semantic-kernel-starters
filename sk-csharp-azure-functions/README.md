@@ -5,6 +5,7 @@ The `sk-csharp-azure-functions` Azure Functions application demonstrates how to 
 ## Prerequisites
 
 - [.NET 6](https://dotnet.microsoft.com/download/dotnet/6.0) is required to run this starter.
+- [Azure Functions Core Tools](https://www.npmjs.com/package/azure-functions-core-tools) is required to run this starter.
 - Install the recommended extensions
   - [C#](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp)
   - [Semantic Kernel Tools](https://marketplace.visualstudio.com/items?itemName=ms-semantic-kernel.semantic-kernel)
