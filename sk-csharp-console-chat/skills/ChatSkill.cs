@@ -14,14 +14,13 @@ internal class ChatSkill
     private readonly IChatCompletion _chatCompletion;
     private readonly ChatHistory _chatHistory;
 
-    private readonly Dictionary<AuthorRole, string> _roleToDisplayRole = new ()
+    private readonly Dictionary<AuthorRole, string> _roleToDisplayRole = new()
         {
             {AuthorRole.System, "System:    "},
             {AuthorRole.User, "User:      "},
             {AuthorRole.Assistant, "Assistant: "}
         };
-
-        Dictionary<AuthorRole, ConsoleColor> _roleToConsoleColor = new ()
+    private readonly Dictionary<AuthorRole, ConsoleColor> _roleToConsoleColor = new()
         {
             {AuthorRole.System, ConsoleColor.Blue},
             {AuthorRole.User, ConsoleColor.Yellow},
@@ -87,7 +86,7 @@ internal class ChatSkill
             {
                 Console.ForegroundColor = color;
             }
-            
+
             // Write the role and the message
             Console.WriteLine($"{role}{message.Content}");
         }
