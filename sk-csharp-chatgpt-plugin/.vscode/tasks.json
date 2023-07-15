@@ -6,7 +6,7 @@
 			"command": "dotnet",
 			"args": [
 				"clean",
-        "${workspaceFolder}/azure-function/azure-function.csproj",
+        "${workspaceFolder}/azure-function/sk-chatgpt-azure-function.csproj",
 				"/property:GenerateFullPaths=true",
 				"/consoleloggerparameters:NoSummary",
 			],
@@ -18,7 +18,7 @@
 			"command": "dotnet",
 			"args": [
 				"build",
-        "${workspaceFolder}/azure-function/azure-function.csproj",
+        "${workspaceFolder}/azure-function/sk-chatgpt-azure-function.csproj",
 				"/property:GenerateFullPaths=true",
 				"/consoleloggerparameters:NoSummary"
 			],
@@ -35,10 +35,10 @@
 			"command": "dotnet",
 			"args": [
 				"clean",
-        "${workspaceFolder}/azure-function/azure-function.csproj",
+        "${workspaceFolder}/azure-function/sk-chatgpt-azure-function.csproj",
 				"--configuration",
 				"Release",
-        "${workspaceFolder}/azure-function/azure-function.csproj",
+        "${workspaceFolder}/azure-function/sk-chatgpt-azure-function.csproj",
 				"/property:GenerateFullPaths=true",
 				"/consoleloggerparameters:NoSummary"
 			],
@@ -75,7 +75,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/azure-function/azure-function.csproj",
+                "${workspaceFolder}/azure-function/sk-chatgpt-azure-function.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -87,7 +87,7 @@
             "type": "process",
             "args": [
                 "publish",
-                "${workspaceFolder}/azure-function/azure-function.csproj",
+                "${workspaceFolder}/azure-function/sk-chatgpt-azure-function.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -101,7 +101,7 @@
                 "watch",
                 "run",
                 "--project",
-                "${workspaceFolder}/azure-function/azure-function.csproj"
+                "${workspaceFolder}/azure-function/sk-chatgpt-azure-function.csproj"
             ],
             "problemMatcher": "$msCompile"
         }

@@ -1,17 +1,17 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 
 using System.Collections.Generic;
 using System.IO;
 using Microsoft.Extensions.Logging;
 using Microsoft.SemanticKernel;
 using Microsoft.SemanticKernel.Diagnostics;
-using Microsoft.SemanticKernel.SkillDefinition;
 using Microsoft.SemanticKernel.SemanticFunctions;
+using Microsoft.SemanticKernel.SkillDefinition;
 using Microsoft.SemanticKernel.Text;
 
 namespace AIPlugins.AzureFunctions.Extensions;
 
-public static class ImportPromptsFromDirectoryExtensions
+public static class KernelExtensions
 {
     public static IDictionary<string, ISKFunction> ImportPromptsFromDirectory(
         this IKernel kernel, string pluginName, string promptDirectory)

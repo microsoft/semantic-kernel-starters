@@ -14,9 +14,9 @@ using Newtonsoft.Json;
 namespace AIPlugins.AzureFunctions.Generator;
 
 [Generator]
-public class SemanticSkillGenerator : ISourceGenerator
+public class SemanticFunctionGenerator : ISourceGenerator
 {
-    private const string DefaultSkillNamespace = "AIPlugins";
+    private const string DefaultFunctionNamespace = "AIPlugins";
     private const string FunctionConfigFilename = "config.json";
     private const string FunctionPromptFilename = "skprompt.txt";
 
@@ -26,48 +26,48 @@ public class SemanticSkillGenerator : ISourceGenerator
 
         if (String.IsNullOrEmpty(rootNamespace))
         {
-            rootNamespace = DefaultSkillNamespace;
+            rootNamespace = DefaultFunctionNamespace;
         }
 
-        // Get the additional files that represent the skills and functions
-        var skillFiles = context.AdditionalFiles.Where(f =>
+        // Get the additional files that represent the functions and functions
+        var functionFiles = context.AdditionalFiles.Where(f =>
             f.Path.Contains(FunctionConfigFilename) ||
             f.Path.Contains(FunctionPromptFilename));
 
-        // Group first by function name, then by skill name
-        var fnFileGroup = skillFiles.GroupBy(f => Path.GetDirectoryName(f.Path));
+        // Group first by function name, then by parent folder
+        var fnFileGroup = functionFiles.GroupBy(f => Path.GetDirectoryName(f.Path));
 
-        // Group the files by skill name
-        var skillGroups = fnFileGroup.GroupBy(f => Path.GetFileName(Path.GetDirectoryName(f.Key)));
+        // Group the files by parent folder name
+        var folderGroups = fnFileGroup.GroupBy(f => Path.GetFileName(Path.GetDirectoryName(f.Key)));
 
-        // Generate a class for each skill
-        foreach (var skillGroup in skillGroups)
+        // Generate a class for each folder
+        foreach (var folderGroup in folderGroups)
         {
-            string? skillName = skillGroup.Key;
-            if (string.IsNullOrWhiteSpace(skillName))
+            string? folderName = folderGroup.Key;
+            if (string.IsNullOrWhiteSpace(folderName))
             {
                 continue;
             }
 
-            string classSource = GenerateClassSource(rootNamespace, skillName, skillGroup);
-            context.AddSource(skillName, SourceText.From(classSource, Encoding.UTF8));
+            string classSource = GenerateClassSource(rootNamespace!, folderName, folderGroup);
+            context.AddSource(folderName, SourceText.From(classSource, Encoding.UTF8));
         }
     }
 
-    // Generate the source code for a skill class
-    private static string GenerateClassSource(string rootNamespace, string skillName, IGrouping<string, IGrouping<string, AdditionalText>> skillGroup)
+    // Generate the source code for a folder of semantic functions
+    private static string GenerateClassSource(string rootNamespace, string folderName, IGrouping<string, IGrouping<string, AdditionalText>> folderGroup)
     {
         // Use a StringBuilder to build the class source
         StringBuilder functionsCode = new();
 
-        foreach (var functionGroup in skillGroup)
+        foreach (var functionGroup in folderGroup)
         {
             // Get the "skprompt.txt" and "config.json" files for this function
             AdditionalText? configFile = functionGroup.FirstOrDefault(f => Path.GetFileName(f.Path).Equals(FunctionConfigFilename, StringComparison.InvariantCultureIgnoreCase));
             AdditionalText? promptFile = functionGroup.FirstOrDefault(f => Path.GetFileName(f.Path).Equals(FunctionPromptFilename, StringComparison.InvariantCultureIgnoreCase));
             if (promptFile != default && configFile != default)
             {
-                functionsCode.AppendLine(GenerateFunctionSource(skillName, promptFile, configFile) ?? string.Empty);
+                functionsCode.AppendLine(GenerateFunctionSource(promptFile, configFile) ?? string.Empty);
             }
         }
 
@@ -84,22 +84,22 @@ using AIPlugins.AzureFunctions.Extensions;
 
 namespace {rootNamespace};
 
-public class {skillName}
+public class {folderName}
 {{
     private readonly ILogger _logger;
     private readonly IAIPluginRunner _pluginRunner;
 
-    public {skillName}(IAIPluginRunner pluginRunner, ILoggerFactory loggerFactory)
+    public {folderName}(IAIPluginRunner pluginRunner, ILoggerFactory loggerFactory)
     {{
         this._pluginRunner = pluginRunner;
-        this._logger = loggerFactory.CreateLogger<{skillName}>();
+        this._logger = loggerFactory.CreateLogger<{folderName}>();
     }}
 
     {functionsCode}
 }}";
     }
 
-    private static string? GenerateFunctionSource(string skillName, AdditionalText promptFile, AdditionalText configFile)
+    private static string? GenerateFunctionSource(AdditionalText promptFile, AdditionalText configFile)
     {
         // Get the function name from the directory name
         string? functionName = Path.GetFileName(Path.GetDirectoryName(promptFile.Path));
@@ -122,12 +122,10 @@ public class {skillName}
     [OpenApiOperation(operationId: ""{functionName}"", tags: new[] {{ ""{functionName}"" }}{descriptionProperty})]{parameterAttributes}
     [OpenApiResponseWithBody(statusCode: HttpStatusCode.OK, contentType: ""text/plain"", bodyType: typeof(string), Description = ""The OK response"")]
     [Function(""{functionName}"")]
-    public async Task<HttpResponseData> Run([HttpTrigger(AuthorizationLevel.Anonymous, ""post"")] HttpRequestData req)
+    public Task<HttpResponseData> Run([HttpTrigger(AuthorizationLevel.Anonymous, ""post"")] HttpRequestData req)
     {{
-        await Task.Delay(0).ConfigureAwait(false);
-
         this._logger.LogInformation(""HTTP trigger processed a request for function {functionName}."");
-        return await this._pluginRunner.RunAIPluginOperationAsync(req, ""{functionName}"");
+        return this._pluginRunner.RunAIPluginOperationAsync(req, ""{functionName}"");
     }}";
     }
 

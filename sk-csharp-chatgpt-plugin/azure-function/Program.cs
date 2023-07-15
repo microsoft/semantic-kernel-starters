@@ -32,11 +32,11 @@ var host = new HostBuilder()
                     .Build();
 
                 // Load your semantic functions...
-                kernel.ImportPromptsFromDirectory(appSettings.AiPlugin.NameForModel, semanticFunctionsFolder);
+                kernel.ImportPromptsFromDirectory(appSettings.AIPlugin.NameForModel, semanticFunctionsFolder);
 
                 return kernel;
             })
-            .AddScoped<IAIPluginRunner, KernelAIPluginRunner>();
+            .AddScoped<IAIPluginRunner, AIPluginRunner>();
     })
     .Build();
 

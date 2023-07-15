@@ -5,13 +5,14 @@ using Microsoft.Extensions.Configuration;
 
 namespace Models;
 
+#pragma warning disable CA1724
 #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
 public class AppSettings
 {
     public const string DefaultConfigFile = "appsettings.json";
 
     public KernelSettings Kernel { get; set; }
-    public AiPluginSettings AiPlugin { get; set; }
+    public AIPluginSettings AIPlugin { get; set; }
 
     /// <summary>
     /// Load the kernel settings from settings.json if the file exists and if not attempt to use user secrets.

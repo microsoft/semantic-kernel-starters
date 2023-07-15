@@ -11,17 +11,23 @@ using Models;
 
 namespace AIPlugins.AzureFunctions.Extensions;
 
-public class KernelAIPluginRunner : IAIPluginRunner
+public class AIPluginRunner : IAIPluginRunner
 {
-    private readonly ILogger<KernelAIPluginRunner> _logger;
+    private readonly ILogger<AIPluginRunner> _logger;
     private readonly IKernel _kernel;
 
-    public KernelAIPluginRunner(IKernel kernel, ILoggerFactory loggerFactory)
+    public AIPluginRunner(IKernel kernel, ILoggerFactory loggerFactory)
     {
         this._kernel = kernel;
-        this._logger = loggerFactory.CreateLogger<KernelAIPluginRunner>();
+        this._logger = loggerFactory.CreateLogger<AIPluginRunner>();
     }
 
+
+    /// <summary>
+    /// Runs a semantic function using the operationID and returns back an HTTP response.
+    /// </summary>
+    /// <param name="req"></param>
+    /// <param name="operationId"></param>
     public async Task<HttpResponseData> RunAIPluginOperationAsync(HttpRequestData req, string operationId)
     {
         ContextVariables contextVariables = LoadContextVariablesFromRequest(req);
@@ -29,7 +35,7 @@ public class KernelAIPluginRunner : IAIPluginRunner
         var appSettings = AppSettings.LoadSettings();
 
         if (!this._kernel.Skills.TryGetFunction(
-            skillName: appSettings.AiPlugin.NameForModel,
+            skillName: appSettings.AIPlugin.NameForModel,
             functionName: operationId,
             out ISKFunction? function))
         {
@@ -52,6 +58,10 @@ public class KernelAIPluginRunner : IAIPluginRunner
         return response;
     }
 
+    /// <summary>
+    /// Grabs the context variables to send to the semantic function from the original HTTP request.
+    /// </summary>
+    /// <param name="req"></param>
     protected static ContextVariables LoadContextVariablesFromRequest(HttpRequestData req)
     {
         ContextVariables contextVariables = new ContextVariables();

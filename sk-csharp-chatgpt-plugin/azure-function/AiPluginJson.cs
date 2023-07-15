@@ -1,4 +1,4 @@
-using System.Net;
+﻿using System.Net;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Azure.Functions.Worker.Http;
@@ -7,29 +7,26 @@ using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using Models;
 
-namespace MathPlugin
+public class AIPluginJson
 {
-    public class AiPluginJson
+    [Function("GetAIPluginJson")]
+    public HttpResponseData Run([HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = ".well-known/ai-plugin.json")] HttpRequestData req)
     {
-        [Function("GetAiPluginJson")]
-        public HttpResponseData Run([HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = ".well-known/ai-plugin.json")] HttpRequestData req)
-        {
-            var currentDomain = $"{req.Url.Scheme}://{req.Url.Host}:{req.Url.Port}";
+        var currentDomain = $"{req.Url.Scheme}://{req.Url.Host}:{req.Url.Port}";
 
-            HttpResponseData response = req.CreateResponse(HttpStatusCode.OK);
-            response.Headers.Add("Content-Type", "application/json");
+        HttpResponseData response = req.CreateResponse(HttpStatusCode.OK);
+        response.Headers.Add("Content-Type", "application/json");
 
-            var appSettings = AppSettings.LoadSettings();
+        var appSettings = AppSettings.LoadSettings();
 
-            // serialize app settings to json using System.Text.Json
-            var json = System.Text.Json.JsonSerializer.Serialize(appSettings.AiPlugin);
+        // serialize app settings to json using System.Text.Json
+        var json = System.Text.Json.JsonSerializer.Serialize(appSettings.AIPlugin);
 
-            // replace {url} with the current domain
-            json = json.Replace("{url}", currentDomain, StringComparison.OrdinalIgnoreCase);
+        // replace {url} with the current domain
+        json = json.Replace("{url}", currentDomain, StringComparison.OrdinalIgnoreCase);
 
-            response.WriteString(json);
+        response.WriteString(json);
 
-            return response;
-        }
+        return response;
     }
 }
