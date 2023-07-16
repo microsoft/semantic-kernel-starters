@@ -1,0 +1,4 @@
+**/bin
+**/obj
+!azure-function/appsettings.json
+azure-function/local.settings.json

@@ -35,10 +35,9 @@
 			"command": "dotnet",
 			"args": [
 				"clean",
-        "${workspaceFolder}/azure-function/sk-chatgpt-azure-function.csproj",
+        		"${workspaceFolder}/azure-function/sk-chatgpt-azure-function.csproj",
 				"--configuration",
 				"Release",
-        "${workspaceFolder}/azure-function/sk-chatgpt-azure-function.csproj",
 				"/property:GenerateFullPaths=true",
 				"/consoleloggerparameters:NoSummary"
 			],
@@ -50,6 +49,7 @@
 			"command": "dotnet",
 			"args": [
 				"publish",
+				"${workspaceFolder}/azure-function/sk-chatgpt-azure-function.csproj",
 				"--configuration",
 				"Release",
 				"/property:GenerateFullPaths=true",
@@ -107,3 +107,4 @@
         }
 	]
 }
+

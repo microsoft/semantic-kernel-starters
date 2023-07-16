@@ -1,5 +1,6 @@
 ﻿// Copyright (c) Microsoft. All rights reserved.
 
+using System.Reflection;
 using System.Text.Json.Serialization;
 using Microsoft.Extensions.Configuration;
 
@@ -22,7 +23,7 @@ public class AppSettings
         try
         {
             var appSettings = FromFile(DefaultConfigFile);
-            appSettings.Kernel.ApiKey = GetApiKey().ApiKey;
+            appSettings.Kernel.ApiKey = GetApiKey();
 
             return appSettings;
         }
@@ -58,13 +59,9 @@ public class AppSettings
     /// <summary>
     /// Load the API key for the AI endpoint from user secrets.
     /// </summary>
-    internal static ApiKeySetting GetApiKey()
+    internal static string GetApiKey()
     {
-        var configuration = new ConfigurationBuilder()
-            .AddUserSecrets<ApiKeySetting>()
-            .Build();
-
-        return configuration.Get<ApiKeySetting>()
+        return System.Environment.GetEnvironmentVariable("apiKey", EnvironmentVariableTarget.Process)
                ?? throw new InvalidDataException("Invalid semantic kernel settings in user secrets, please provide configuration settings using instructions in the README.");
     }
 }
