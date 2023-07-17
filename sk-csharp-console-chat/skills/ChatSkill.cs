@@ -1,4 +1,5 @@
-﻿using Microsoft.SemanticKernel;
+﻿using System.ComponentModel;
+using Microsoft.SemanticKernel;
 using Microsoft.SemanticKernel.AI;
 using Microsoft.SemanticKernel.AI.ChatCompletion;
 using Microsoft.SemanticKernel.SkillDefinition;
@@ -13,6 +14,19 @@ internal class ChatSkill
     private readonly IChatCompletion _chatCompletion;
     private readonly ChatHistory _chatHistory;
 
+    private readonly Dictionary<AuthorRole, string> _roleToDisplayRole = new()
+        {
+            {AuthorRole.System, "System:    "},
+            {AuthorRole.User, "User:      "},
+            {AuthorRole.Assistant, "Assistant: "}
+        };
+    private readonly Dictionary<AuthorRole, ConsoleColor> _roleToConsoleColor = new()
+        {
+            {AuthorRole.System, ConsoleColor.Blue},
+            {AuthorRole.User, ConsoleColor.Yellow},
+            {AuthorRole.Assistant, ConsoleColor.Green}
+        };
+
     public ChatSkill(IKernel kernel, KernelSettings kernelSettings)
     {
         // Set up the chat completion and history - the history is used to keep track of the conversation
@@ -24,8 +38,7 @@ internal class ChatSkill
     /// <summary>
     /// Send a prompt to the LLM.
     /// </summary>
-    [SKFunction("Send a prompt to the LLM.")]
-    [SKFunctionName("Prompt")]
+    [SKFunction, Description("Send a prompt to the LLM.")]
     public async Task<string> PromptAsync(string prompt)
     {
         var reply = string.Empty;
@@ -52,8 +65,7 @@ internal class ChatSkill
     /// Log the history of the chat with the LLM.
     /// This will log the system prompt that configures the chat, along with the user and assistant messages.
     /// </summary>
-    [SKFunction("Log the history of the chat with the LLM.")]
-    [SKFunctionName("LogChatHistory")]
+    [SKFunction, Description("Log the history of the chat with the LLM.")]
     public Task LogChatHistory()
     {
         Console.WriteLine();
@@ -63,22 +75,16 @@ internal class ChatSkill
         // Log the chat history including system, user and assistant (AI) messages
         foreach (var message in this._chatHistory.Messages)
         {
+            string role = "None:      ";
             // Depending on the role, use a different color
-            var role = "None:      ";
-            if (message.Role == AuthorRole.System)
+            if (this._roleToDisplayRole.TryGetValue(message.Role, out var displayRole))
             {
-                role = "System:    ";
-                Console.ForegroundColor = ConsoleColor.Blue;
+                role = displayRole;
             }
-            else if (message.Role == AuthorRole.User)
+
+            if (this._roleToConsoleColor.TryGetValue(message.Role, out var color))
             {
-                role = "User:      ";
-                Console.ForegroundColor = ConsoleColor.Yellow;
-            }
-            else if (message.Role == AuthorRole.Assistant)
-            {
-                role = "Assistant: ";
-                Console.ForegroundColor = ConsoleColor.Green;
+                Console.ForegroundColor = color;
             }
 
             // Write the role and the message
