@@ -122,7 +122,7 @@ public class {folderName}
     [OpenApiOperation(operationId: ""{functionName}"", tags: new[] {{ ""{functionName}"" }}{descriptionProperty})]{parameterAttributes}
     [OpenApiResponseWithBody(statusCode: HttpStatusCode.OK, contentType: ""text/plain"", bodyType: typeof(string), Description = ""The OK response"")]
     [Function(""{functionName}"")]
-    public Task<HttpResponseData> Run([HttpTrigger(AuthorizationLevel.Anonymous, ""post"")] HttpRequestData req)
+    public Task<HttpResponseData> {functionName}([HttpTrigger(AuthorizationLevel.Anonymous, ""post"")] HttpRequestData req)
     {{
         this._logger.LogInformation(""HTTP trigger processed a request for function {functionName}."");
         return this._pluginRunner.RunAIPluginOperationAsync(req, ""{functionName}"");
