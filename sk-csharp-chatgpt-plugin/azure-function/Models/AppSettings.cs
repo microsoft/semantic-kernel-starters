@@ -31,7 +31,7 @@ public class AppSettings
         {
             Console.Error.WriteLine(
                 "Unable to load app settings, please provide configuration settings using instructions in the README.\n" +
-                "Please refer to: https://github.com/microsoft/semantic-kernel-starters/blob/main/azure-function/README.md#configuring-the-starter"
+                "Please refer to: https://github.com/microsoft/semantic-kernel-starters/blob/main/sk-csharp-chatgpt-plugin/README.md#configuring-the-starter"
             );
             throw new InvalidOperationException(ide.Message);
         }

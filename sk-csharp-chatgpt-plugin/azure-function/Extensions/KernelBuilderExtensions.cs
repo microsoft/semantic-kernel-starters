@@ -4,7 +4,7 @@ using Models;
 internal static class KernelBuilderExtensions
 {
     /// <summary>
-    /// Adds a text completion service to the list. It can be either an OpenAI or Azure OpenAI backend service.
+    /// Adds a chat completion service to the list. It can be either an OpenAI or Azure OpenAI backend service.
     /// </summary>
     /// <param name="kernelBuilder"></param>
     /// <param name="kernelSettings"></param>
