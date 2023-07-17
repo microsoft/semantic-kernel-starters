@@ -5,7 +5,7 @@ VisualStudioVersion = 17.5.33530.505
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "sk-csharp-azure-functions", "sk-csharp-azure-functions\sk-csharp-azure-functions.csproj", "{A3C12DC4-9448-4DFC-A8BA-6841F6236156}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "sk-csharp-chatgpt-plugin", "sk-csharp-chatgpt-plugin\azure-function\azure-function.csproj", "{2E21E690-D091-4116-BD9B-2B2049C84DFF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "sk-csharp-chatgpt-plugin", "sk-csharp-chatgpt-plugin\azure-function\sk-chatgpt-azure-function.csproj", "{2E21E690-D091-4116-BD9B-2B2049C84DFF}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "semantic-functions-generator", "sk-csharp-chatgpt-plugin\semantic-functions-generator\semantic-functions-generator.csproj", "{6F9921F1-CDD6-4173-8AE7-6416FF4EB847}"
 EndProject
