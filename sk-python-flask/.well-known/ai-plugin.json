@@ -1,17 +1,17 @@
 {
     "schema_version": "v1",
-    "name_for_human": "Human",
+    "name_for_human": "SemanticKernel",
     "name_for_model": "SemanticKernel",
     "description_for_human": "Make requests to use semantic kernel functions.",
-    "description_for_model": "Plugin for using the semantic kernel functions.",
+    "description_for_model": "Plugin for using the semantic kernel functions. Available skills and their functions: {'skill': {'name': 'FunSkill', 'functions': [{'name': 'Joke', 'inputs': [{'name': 'input', 'description': 'The subject of the joke'}, {'name': 'style', 'description': 'The subject of the joke'}]}]}}",
     "auth": {
         "type": "none"
     },
     "api": {
         "type": "openapi",
-        "url": "http://localhost:5003/openapi.yaml"
+        "url": "http://localhost:5000/openapi.yaml"
     },
-    "logo_url": "http://localhost:5003/logo.png",
+    "logo_url": "http://localhost:5000/logo.png",
     "contact_email": "legal@example.com",
     "legal_info_url": "http://example.com/legal"
 }

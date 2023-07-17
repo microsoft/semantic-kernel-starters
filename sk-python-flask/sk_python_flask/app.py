@@ -2,6 +2,7 @@ import sys
 import asyncio
 import logging
 from flask import Flask, request, Response, send_file
+from flask_cors import CORS
 from semantic_kernel.kernel_exception import KernelException
 
 from sk_python_flask.kernel_utils import (
@@ -11,6 +12,7 @@ from sk_python_flask.kernel_utils import (
 
 
 app = Flask(__name__)
+CORS(app)
 
 
 @app.route("/skills/<skill_name>/functions/<function_name>", methods=["POST"])

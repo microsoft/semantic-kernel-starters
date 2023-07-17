@@ -10,6 +10,7 @@ packages = [{include = "sk_python_flask"}]
 python = "^3.8"
 semantic-kernel = "^0.2.7.dev0"
 flask = "^2.3.2"
+flask-cors = "^4.0.0"
 
 [tool.poetry.group.dev.dependencies]
 black = "^23.3.0"
