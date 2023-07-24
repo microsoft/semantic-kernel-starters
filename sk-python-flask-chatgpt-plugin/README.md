@@ -55,6 +55,21 @@ For example, send a POST request to `localhost:5000/skills/FunSkill/functions/Jo
 and a JSON request body containing your prompt parameters such as:
 `{"input": "time traveling to dinosaur age", "style": "wacky"}`
 
+For example,
+
+```
+curl -X POST \
+  http://localhost:5000/skills/FunSkill/functions/Joke \
+  -H 'Content-Type: application/json' \
+  -H 'x-ms-sk-completion-model: text-davinci-003' \
+  -H 'x-ms-sk-completion-endpoint: https://my-endpoint.openai.azure.com' \
+  -H 'x-ms-sk-completion-backend: AZURE_OPENAI' \
+  -H 'x-ms-sk-completion-key: Your API key' \
+  -d '{"input": "time traveling to dinosaur age", "style": "wacky"}'
+```
+
+You may need to escape the double quotes if using curl in Windows
+
 ## Using the starter as a ChatGPT plugin
 
 First, run your Flask app locally.
