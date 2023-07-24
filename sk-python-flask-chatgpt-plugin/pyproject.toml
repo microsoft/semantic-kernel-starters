@@ -1,16 +1,16 @@
 [tool.poetry]
-name = "sk-python-flask"
+name = "sk-python-flask-chatgpt-plugin"
 version = "0.1.0"
-description = "A starter application using the semantic kernel in a Flask backend"
+description = "A starter application using the semantic kernel in a Flask backend that can be imported as a ChatGPT plugin"
 authors = ["Microsoft <SK-Support@microsoft.com>"]
 readme = "README.md"
-packages = [{include = "sk_python_flask"}]
+packages = [{include = "sk_python_flask_chatgpt_plugin"}]
 
 [tool.poetry.dependencies]
 python = "^3.8"
-semantic-kernel = "^0.2.7.dev0"
+semantic-kernel = "^0.3.4.dev0"
 flask = "^2.3.2"
-flask-cors = "^4.0.0"
+Flask-Cors = "^4.0.0"
 
 [tool.poetry.group.dev.dependencies]
 black = "^23.3.0"

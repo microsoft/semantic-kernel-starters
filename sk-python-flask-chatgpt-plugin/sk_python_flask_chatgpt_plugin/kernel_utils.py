@@ -4,7 +4,7 @@ import semantic_kernel as sk
 import semantic_kernel.connectors.ai.open_ai as sk_oai
 from semantic_kernel.orchestration.context_variables import ContextVariables
 
-from sk_python_flask.config import AIService, headers_to_config, dotenv_to_config
+from sk_python_flask_chatgpt_plugin.config import AIService, headers_to_config, dotenv_to_config
 
 
 SKILLS_DIRECTORY = os.path.join("skills")
