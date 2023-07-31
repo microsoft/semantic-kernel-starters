@@ -4,31 +4,18 @@ info:
   description: A plugin that allows the user to call Semantic Kernel Functions.
   version: 'v1'
 servers:
-  - url: http://localhost:5000
+  - url: http://localhost:5050
 paths:
-  /skills/{skill_name}/functions/{function_name}:
+  /skills/FunSkill/functions/Joke:
     post:
-      operationId: executeFunction
-      summary: Execute the requested semantic function
-      parameters:
-      - in: path
-        name: skill_name
-        schema:
-          type: string
-        required: true
-        description: The name of the semantic skill.
-      - in: path
-        name: function_name
-        schema:
-          type: string
-        required: true
-        description: The name of the semantic function within the skill
+      operationId: executeJokeFunction
+      summary: Execute the joke semantic function
       requestBody:
-        required: false
+        required: True
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/executeFunctionRequest'
+              $ref: '#/components/schemas/executeJokeFunctionRequest'
       responses:
         "200":
           description: OK
@@ -38,11 +25,12 @@ paths:
                 type: string
 components:
   schemas:
-    executeFunctionRequest:
+    executeJokeFunctionRequest:
       type: object
       properties:
         input:
           type: string
+        style:
+          type: string
       required:
         - input
-      additionalProperties: true

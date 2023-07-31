@@ -48,10 +48,10 @@ On each HTTP request, use these headers:
 ## Running the starter
 
 To run the console application within Visual Studio Code, just hit `F5`.
-As configured in `launch.json` and `tasks.json`, Visual Studio Code will run `poetry install` followed by `python -m flask run sk_python_flask/app.py`
+As configured in `launch.json` and `tasks.json`, Visual Studio Code will run `poetry install` followed by `python -m flask run sk_python_flask/app.py`.  Some users have had issues if there are spaces in their folder names.
 
-A POST endpoint exists at `localhost:5000/skills/{skill_name}/functions/{function_name}`
-For example, send a POST request to `localhost:5000/skills/FunSkill/functions/Joke` with the configuration headers
+A POST endpoint exists at `localhost:5050/skills/{skill_name}/functions/{function_name}`
+For example, send a POST request to `localhost:5050/skills/FunSkill/functions/Joke` with the configuration headers
 and a JSON request body containing your prompt parameters such as:
 `{"input": "time traveling to dinosaur age", "style": "wacky"}`
 
@@ -59,7 +59,7 @@ For example,
 
 ```
 curl -X POST \
-  http://localhost:5000/skills/FunSkill/functions/Joke \
+  http://localhost:5050/skills/FunSkill/functions/Joke \
   -H 'Content-Type: application/json' \
   -H 'x-ms-sk-completion-model: text-davinci-003' \
   -H 'x-ms-sk-completion-endpoint: https://my-endpoint.openai.azure.com' \
@@ -70,8 +70,25 @@ curl -X POST \
 
 You may need to escape the double quotes if using curl in Windows
 
+For simplicity, an endpoint also exists at `localhost:5050/joke`.
+
+```
+curl -X POST \
+  http://localhost:5050/joke \
+  -H 'Content-Type: application/json' \
+  -H 'x-ms-sk-completion-model: text-davinci-003' \
+  -H 'x-ms-sk-completion-endpoint: https://my-endpoint.openai.azure.com' \
+  -H 'x-ms-sk-completion-backend: AZURE_OPENAI' \
+  -H 'x-ms-sk-completion-key: Your API key' \
+  -d '{"input": "time traveling to dinosaur age", "style": "wacky"}'
+```
+
 ## Using the starter as a ChatGPT plugin
 
 First, run your Flask app locally.
 Then, follow instructions on the [OpenAI website](https://platform.openai.com/docs/plugins/introduction) to install your plugin into ChatGPT.
 You may need to join a waitlist for developer access.
+
+When installing into ChatGPT, use the domain `localhost:5050` without `http` or `https`.
+
+ChatGPT has an easier time deciding which route to use when you use a route per function, so the route `localhost:5050/joke` is the only one exposed to ChatGPT.

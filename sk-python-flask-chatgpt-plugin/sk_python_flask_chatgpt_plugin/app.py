@@ -37,6 +37,9 @@ def execute_semantic_function(skill_name, function_name):
     logging.info(f"Result: {result}")
     return str(result)
 
+@app.route("/joke", methods=["POST"])
+def execute_joke():
+    return execute_semantic_function("FunSkill", "Joke")
 
 @app.route("/.well-known/ai-plugin.json", methods=["GET"])
 def get_ai_plugin():
