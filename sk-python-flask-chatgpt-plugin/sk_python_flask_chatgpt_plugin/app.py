@@ -1,11 +1,9 @@
-import sys
-import asyncio
 import logging
 from flask import Flask, request, Response, send_file
 from flask_cors import CORS
 from semantic_kernel.kernel_exception import KernelException
 
-from sk_python_flask.kernel_utils import (
+from sk_python_flask_chatgpt_plugin.kernel_utils import (
     create_kernel_for_request,
     create_context_variables_from_request,
 )
@@ -17,8 +15,6 @@ CORS(app)
 
 @app.route("/skills/<skill_name>/functions/<function_name>", methods=["POST"])
 def execute_semantic_function(skill_name, function_name):
-    if sys.platform == "win32" and sys.version_info >= (3, 8, 0):
-        asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
     logging.info(
         f"Received request for skill {skill_name} and function {function_name}"
     )
@@ -41,6 +37,9 @@ def execute_semantic_function(skill_name, function_name):
     logging.info(f"Result: {result}")
     return str(result)
 
+@app.route("/joke", methods=["POST"])
+def execute_joke():
+    return execute_semantic_function("FunSkill", "Joke")
 
 @app.route("/.well-known/ai-plugin.json", methods=["GET"])
 def get_ai_plugin():

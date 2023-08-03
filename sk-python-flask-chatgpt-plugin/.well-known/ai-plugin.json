@@ -1,0 +1,17 @@
+{
+    "schema_version": "v1",
+    "name_for_human": "SemanticKernel",
+    "name_for_model": "SemanticKernel",
+    "description_for_human": "Make requests to use semantic kernel functions.",
+    "description_for_model": "Plugin for using the semantic kernel functions.",
+    "auth": {
+        "type": "none"
+    },
+    "api": {
+        "type": "openapi",
+        "url": "http://localhost:5050/openapi.yaml"
+    },
+    "logo_url": "http://localhost:5050/logo.png",
+    "contact_email": "legal@example.com",
+    "legal_info_url": "http://example.com/legal"
+}

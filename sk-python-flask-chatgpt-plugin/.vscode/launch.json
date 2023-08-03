@@ -11,11 +11,12 @@
             "request": "launch",
             "module": "flask",
             "env": {
-                "FLASK_APP": "sk_python_flask/app.py",
+                "FLASK_APP": "sk_python_flask_chatgpt_plugin/app.py",
                 "FLASK_DEBUG": "1"
             },
             "args": [
-                "run"
+                "run",
+                "-p 5050"
             ],
             "jinja": true,
             "justMyCode": true,
