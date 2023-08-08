@@ -44,7 +44,7 @@ public static class KernelExtensions
             // Prepare lambda wrapping AI logic
             var functionConfig = new SemanticFunctionConfig(config, template);
 
-            kernel.Log.LogTrace("Registering function {0}.{1} loaded from {2}", pluginName, functionName, dir);
+            kernel.Logger.LogTrace("Registering function {0}.{1} loaded from {2}", pluginName, functionName, dir);
             plugin[functionName] = kernel.RegisterSemanticFunction(pluginName, functionName, functionConfig);
         }
 

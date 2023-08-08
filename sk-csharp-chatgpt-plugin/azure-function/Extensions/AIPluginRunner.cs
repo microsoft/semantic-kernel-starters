@@ -48,7 +48,11 @@ public class AIPluginRunner : IAIPluginRunner
         if (result.ErrorOccurred)
         {
             HttpResponseData errorResponse = req.CreateResponse(HttpStatusCode.BadRequest);
-            await errorResponse.WriteStringAsync(result.LastErrorDescription);
+            string? message = result?.LastException?.Message;
+            if (message != null)
+            {
+                await errorResponse.WriteStringAsync(message);
+            }
             return errorResponse;
         }
 
