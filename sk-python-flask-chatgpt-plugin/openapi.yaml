@@ -1,4 +1,4 @@
-openapi: 3.0.1
+openapi: 3.1.0
 info:
   title: Semantic Kernel Plugin
   description: A plugin that allows the user to call Semantic Kernel Functions.
@@ -9,7 +9,8 @@ paths:
   /skills/FunSkill/functions/Joke:
     post:
       operationId: executeJokeFunction
-      summary: Execute the joke semantic function
+      description: |
+        Execute the joke semantic function; submit the input and style as a JSON object in the payload input, e.g. {"input": "<JokeSubject>", "style": "<JokeStyle>"}
       requestBody:
         required: True
         content:
