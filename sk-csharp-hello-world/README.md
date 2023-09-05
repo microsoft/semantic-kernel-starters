@@ -25,8 +25,8 @@ Configure an OpenAI endpoint
 ```powershell
 cd sk-csharp-hello-world
 dotnet user-secrets set "serviceType" "OpenAI"
-dotnet user-secrets set "serviceId" "text-davinci-003"
-dotnet user-secrets set "deploymentOrModelId" "text-davinci-003"
+dotnet user-secrets set "serviceId" "gpt-3.5-turbo"
+dotnet user-secrets set "deploymentOrModelId" "gpt-3.5-turbo"
 dotnet user-secrets set "apiKey" "... your OpenAI key ..."
 ```
 
@@ -35,8 +35,8 @@ Configure an Azure OpenAI endpoint
 ```powershell
 cd sk-csharp-hello-world
 dotnet user-secrets set "serviceType" "AzureOpenAI"
-dotnet user-secrets set "serviceId" "text-davinci-003"
-dotnet user-secrets set "deploymentOrModelId" "text-davinci-003"
+dotnet user-secrets set "serviceId" "gpt-35-turbo"
+dotnet user-secrets set "deploymentOrModelId" "gpt-35-turbo"
 dotnet user-secrets set "endpoint" "https:// ... your endpoint ... .openai.azure.com/"
 dotnet user-secrets set "apiKey" "... your Azure OpenAI key ..."
 ```
@@ -92,4 +92,4 @@ A chat completion model (gpt-35-turbo) was set in serviceId/deploymentOrModelId 
 dotnet user-secrets set "endpointType" "chat-completion"
 ```
 
-- change serviceId and deploymentOrModelId to a text completion service like "text-davinci-003": [See Using .NET Secret Manager](#using-net-secret-manager).
+- change serviceId and deploymentOrModelId to a text completion service like "text-davinci-003": [See Using .NET Secret Manager](#using-net-secret-manager). Please note that the [text-davinci-003 model will be phased out in the future](https://techcommunity.microsoft.com/t5/azure-ai-services-blog/announcing-updates-to-azure-openai-service-models/ba-p/3866757).

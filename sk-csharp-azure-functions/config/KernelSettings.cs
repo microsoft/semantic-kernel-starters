@@ -8,7 +8,7 @@ internal class KernelSettings
     public const string DefaultConfigFile = "config/appsettings.json";
 
     [JsonPropertyName("endpointType")]
-    public string EndpointType { get; set; } = EndpointTypes.TextCompletion;
+    public string EndpointType { get; set; } = EndpointTypes.ChatCompletion;
 
     [JsonPropertyName("serviceType")]
     public string ServiceType { get; set; } = string.Empty;
