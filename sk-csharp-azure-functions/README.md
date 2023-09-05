@@ -26,8 +26,8 @@ Configure an OpenAI endpoint
 ```powershell
 cd sk-csharp-azure-functions
 dotnet user-secrets set "serviceType" "OpenAI"
-dotnet user-secrets set "serviceId" "text-davinci-003"
-dotnet user-secrets set "deploymentOrModelId" "text-davinci-003"
+dotnet user-secrets set "serviceId" "gpt-3.5-turbo"
+dotnet user-secrets set "deploymentOrModelId" "gpt-3.5-turbo"
 dotnet user-secrets set "apiKey" "... your OpenAI key ..."
 ```
 
@@ -36,8 +36,8 @@ Configure an Azure OpenAI endpoint
 ```powershell
 cd sk-csharp-azure-functions
 dotnet user-secrets set "serviceType" "AzureOpenAI"
-dotnet user-secrets set "serviceId" "text-davinci-003"
-dotnet user-secrets set "deploymentOrModelId" "text-davinci-003"
+dotnet user-secrets set "serviceId" "gpt-35-turbo"
+dotnet user-secrets set "deploymentOrModelId" "gpt-35-turbo"
 dotnet user-secrets set "endpoint" "https:// ... your endpoint ... .openai.azure.com/"
 dotnet user-secrets set "apiKey" "... your Azure OpenAI key ..."
 ```
@@ -80,3 +80,17 @@ To build and run the Azure Functions application from a terminal use the followi
 dotnet build
 func start --csharp
 ```
+
+## Troubleshooting
+
+### Getting a 400 (BadRequest) and error "Azure.RequestFailedException: logprobs, best_of and echo parameters are not available on gpt-35-turbo model. Please remove the parameter and try again."
+
+A chat completion model (gpt-35-turbo) was set in serviceId/deploymentOrModelId while the kernel was configured to use a text completion model. The type of model used by the kernel can be configured with the endpointType secret. To fix, you can either:
+
+- change endpointType to chat-completion
+
+```powershell
+dotnet user-secrets set "endpointType" "chat-completion"
+```
+
+- change serviceId and deploymentOrModelId to a text completion service like "text-davinci-003": [See Using .NET Secret Manager](#using-net-secret-manager). Please note that the [text-davinci-003 model will be phased out in the future](https://techcommunity.microsoft.com/t5/azure-ai-services-blog/announcing-updates-to-azure-openai-service-models/ba-p/3866757).

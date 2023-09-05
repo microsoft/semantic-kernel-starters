@@ -12,14 +12,18 @@ internal static class KernelBuilderExtensions
     {
         switch (kernelSettings.ServiceType.ToUpperInvariant())
         {
-            case ServiceTypes.AzureOpenAI:
+            case ServiceTypes.AzureOpenAI when kernelSettings.EndpointType == EndpointTypes.TextCompletion:
                 kernelBuilder.WithAzureTextCompletionService(deploymentName: kernelSettings.DeploymentOrModelId, endpoint: kernelSettings.Endpoint, apiKey: kernelSettings.ApiKey, serviceId: kernelSettings.ServiceId);
                 break;
-
-            case ServiceTypes.OpenAI:
+            case ServiceTypes.AzureOpenAI when kernelSettings.EndpointType == EndpointTypes.ChatCompletion:
+                kernelBuilder.WithAzureChatCompletionService(deploymentName: kernelSettings.DeploymentOrModelId, endpoint: kernelSettings.Endpoint, apiKey: kernelSettings.ApiKey, serviceId: kernelSettings.ServiceId);
+                break;
+            case ServiceTypes.OpenAI when kernelSettings.EndpointType == EndpointTypes.TextCompletion:
                 kernelBuilder.WithOpenAITextCompletionService(modelId: kernelSettings.DeploymentOrModelId, apiKey: kernelSettings.ApiKey, orgId: kernelSettings.OrgId, serviceId: kernelSettings.ServiceId);
                 break;
-
+            case ServiceTypes.OpenAI when kernelSettings.EndpointType == EndpointTypes.ChatCompletion:
+                kernelBuilder.WithOpenAIChatCompletionService(modelId: kernelSettings.DeploymentOrModelId, apiKey: kernelSettings.ApiKey, orgId: kernelSettings.OrgId, serviceId: kernelSettings.ServiceId);
+                break;
             default:
                 throw new ArgumentException($"Invalid service type value: {kernelSettings.ServiceType}");
         }
