@@ -5,7 +5,7 @@ import "./bin/Microsoft.SemanticKernel.Core.js";
 import "./bin/Microsoft.SemanticKernel.Connectors.AI.OpenAI.js";
 import dotnet from "node-api-dotnet";
 import readline from "node:readline";
-import { colours } from "./consoleColours.js";
+import { consoleColours } from "./consoleColours.js";
 
 const SK = dotnet.Microsoft.SemanticKernel;
 
@@ -43,10 +43,10 @@ r1.on('line', async (userInput: string) => {
         const reply = await kernel.RunAsync("", [chatFunction]);
 
         chatHistory.push(`${reply}`);
-        console.log(colours.green, `Answer> ${reply}`);
-        console.log(colours.white, `SK> Ask me another question or say goodbye to exit.`);
+        console.log(consoleColours.green, `Answer> ${reply}`);
+        console.log(consoleColours.white, `SK> Ask me another question or say goodbye to exit.`);
     }
 }).on('close', () => {
-    console.log(colours.white, 'SK> Goodbye!');
+    console.log(consoleColours.white, 'SK> Goodbye!');
     process.exit(0);
 });
