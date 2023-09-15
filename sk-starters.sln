@@ -5,7 +5,7 @@ VisualStudioVersion = 17.5.33530.505
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "sk-csharp-azure-functions", "sk-csharp-azure-functions\sk-csharp-azure-functions.csproj", "{A3C12DC4-9448-4DFC-A8BA-6841F6236156}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "sk-csharp-chatgpt-plugin", "sk-csharp-chatgpt-plugin\azure-function\sk-chatgpt-azure-function.csproj", "{2E21E690-D091-4116-BD9B-2B2049C84DFF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "sk-chatgpt-azure-function", "sk-csharp-chatgpt-plugin\azure-function\sk-chatgpt-azure-function.csproj", "{2E21E690-D091-4116-BD9B-2B2049C84DFF}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "semantic-functions-generator", "sk-csharp-chatgpt-plugin\semantic-functions-generator\semantic-functions-generator.csproj", "{6F9921F1-CDD6-4173-8AE7-6416FF4EB847}"
 EndProject
@@ -14,6 +14,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "sk-csharp-console-chat", "sk-csharp-console-chat\sk-csharp-console-chat.csproj", "{CA34788F-6FFC-42F8-A539-2692F912262F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "sk_csharp_apim_demo", "sk_csharp_apim_demo\sk_csharp_apim_demo.csproj", "{FC9DF14A-6CCB-42FA-BE38-C61F87C06094}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "sk-typescript-console-chat", "sk-typescript-console-chat\sk-typescript-console-chat.csproj", "{9FEE5A32-69C2-4DEF-9179-BBCD80AB8317}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{FC9DF14A-6CCB-42FA-BE38-C61F87C06094}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FC9DF14A-6CCB-42FA-BE38-C61F87C06094}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FC9DF14A-6CCB-42FA-BE38-C61F87C06094}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9FEE5A32-69C2-4DEF-9179-BBCD80AB8317}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9FEE5A32-69C2-4DEF-9179-BBCD80AB8317}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9FEE5A32-69C2-4DEF-9179-BBCD80AB8317}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9FEE5A32-69C2-4DEF-9179-BBCD80AB8317}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

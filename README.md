@@ -16,6 +16,7 @@ Alternatively, you can use the [Semantic Kernel Tools](https://marketplace.visua
 - [C# Azure Functions](sk-csharp-azure-functions): The Hello World C# Azure Functions starter for the Semantic Kernel.
 - [Python Hello World](sk-python-hello-world): The Hello World Python console application starter for the Semantic Kernel.
 - [Python Azure Functions](sk-python-azure-functions): The Hello World Python Azure Functions starter for the Semantic Kernel.
+- [Typescript Console Chat](sk-typescript-console-chat): A console application based chat starter for the Semantic Kernel. 
 
 ## Contributing
 
