@@ -48,7 +48,11 @@ On each HTTP request, use these headers:
 ## Running the starter
 
 To run the console application within Visual Studio Code, just hit `F5`.
-As configured in `launch.json` and `tasks.json`, Visual Studio Code will run `poetry install` followed by `python -m flask run sk_python_flask/app.py`.  Some users have had issues if there are spaces in their folder names.
+As configured in `launch.json` and `tasks.json`, Visual Studio Code will run `poetry install` followed by `python -m flask run sk_python_flask_chatgpt_plugin/app.py`.  Some users have had issues if there are spaces in their folder names.
+
+To run the console application using CLI:
+1. `poetry install`
+2. `python -m flask --app sk_python_flask_chatgpt_plugin/app.py run --port 5050 --debug`
 
 A POST endpoint exists at `localhost:5050/skills/{skill_name}/functions/{function_name}`
 For example, send a POST request to `localhost:5050/skills/FunSkill/functions/Joke` with the configuration headers

@@ -1,0 +1,56 @@
+openapi: 3.1.0
+info:
+  title: Semantic Kernel Plugin
+  description: A plugin that allows the user to call Semantic Kernel Functions.
+  version: 'v1'
+servers:
+  - url: http://localhost:7071
+paths:
+  /skills/FunSkill/functions/Joke:
+    post:
+      operationId: executeJokeFunction
+      description: |
+        Execute the joke semantic function; submit the input and style as a JSON object in the payload input, e.g. {"input": "<JokeSubject>", "style": "<JokeStyle>"}
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/executeJokeFunctionRequest'
+      responses:
+        "200":
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+  /hello:
+    get:
+      operationId: hello
+      description: |
+        Execute a simple hello <name> native function.
+      parameters:
+        - name: name
+          in: query
+          description: The name to say hello to.
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+components:
+  schemas:
+    executeJokeFunctionRequest:
+      type: object
+      properties:
+        input:
+          type: string
+        style:
+          type: string
+      required:
+        - input

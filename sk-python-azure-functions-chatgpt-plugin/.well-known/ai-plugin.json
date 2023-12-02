@@ -1,0 +1,17 @@
+{
+  "schema_version": "v1",
+  "name_for_human": "Fun Plugin",
+  "name_for_model": "FunPlugin",
+  "description_for_human": "Execute fun skills such as jokes, excuses and limericks.",
+  "description_for_model": "A plugin for using semantic kernel fun skills.",
+  "auth": {
+      "type": "none"
+  },
+  "api": {
+      "type": "openapi",
+      "url": "http://localhost:7071/openapi.yaml"
+  },
+  "logo_url": "http://localhost:7071/logo.png",
+  "contact_email": "legal@example.com",
+  "legal_info_url": "http://example.com/legal"
+}
