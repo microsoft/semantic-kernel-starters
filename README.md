@@ -17,6 +17,8 @@ Alternatively, you can use the [Semantic Kernel Tools](https://marketplace.visua
 - [C# Azure ChatGPT Plugin](sk-csharp-chatgpt-plugin): The Joke ChatGPT Plugin starter using C# Azure Functions for the Semantic Kernel.
 - [Python Hello World](sk-python-hello-world): The Hello World Python console application starter for the Semantic Kernel.
 - [Python Azure Functions](sk-python-azure-functions): The Hello World Python Azure Functions starter for the Semantic Kernel.
+- [Typescript Console Chat](sk-typescript-console-chat): A console application based chat starter for the Semantic Kernel.
+- [Java Hello World](sk-java-hello-world): The Hello World Java console application starter for the Semantic Kernel.
 - [Python Azure Functions ChatGPT Plugin](sk-python-azure-functions-chatgpt-plugin): The Joke ChatGPT Plugin starter using Python Azure Functions for the Semantic Kernel.
 - [Python Flask ChatGPT Plugin](sk-python-flask-chatgpt-plugin): The Joke ChatGPT Plugin starter using Python Flask for the Semantic Kernel.
 - [Typescript Console Chat](sk-typescript-console-chat): A console application based chat starter for the Semantic Kernel. 
