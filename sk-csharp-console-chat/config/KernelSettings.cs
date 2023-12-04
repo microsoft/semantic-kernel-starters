@@ -12,8 +12,11 @@ internal class KernelSettings
     [JsonPropertyName("serviceId")]
     public string ServiceId { get; set; } = string.Empty;
 
-    [JsonPropertyName("deploymentOrModelId")]
-    public string DeploymentOrModelId { get; set; } = string.Empty;
+    [JsonPropertyName("deploymentId")]
+    public string DeploymentId { get; set; } = string.Empty;
+
+    [JsonPropertyName("modelId")]
+    public string ModelId { get; set; } = string.Empty;
 
     [JsonPropertyName("endpoint")]
     public string Endpoint { get; set; } = string.Empty;
