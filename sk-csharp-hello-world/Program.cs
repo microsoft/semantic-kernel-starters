@@ -44,6 +44,7 @@ while (true)
     {
         FunctionCallBehavior = FunctionCallBehavior.AutoInvokeKernelFunctions
     };
+
     var result = kernel.InvokeStreamingAsync<StreamingChatMessageContent>(
         prompt,
         arguments: new(openAIPromptExecutionSettings) {

@@ -1,8 +1,10 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Http.Resilience;
 using Microsoft.SemanticKernel;
 using Plugins;
+using System.Net;
 
 // Load the kernel settings
 var kernelSettings = KernelSettings.LoadSettings();
@@ -23,14 +25,13 @@ builder.ConfigureServices((context, services) =>
     // Add kernel settings to the host builder
     services
         .AddSingleton<KernelSettings>(kernelSettings)
-        .AddSingleton<Kernel>(sp => new KernelBuilder()
-            .WithLoggerFactory(LoggerFactory.Create(b =>
+        .AddTransient<Kernel>(serviceProvider => new KernelBuilder()
+            .WithServices(serviceCollection =>
             {
-                b.SetMinimumLevel(kernelSettings.LogLevel ?? LogLevel.Warning)
-                    .AddConsole()
-                    .AddDebug();
-            }))
-            .WithChatCompletionService(kernelSettings)
+                serviceCollection
+                    .AddLogging(c => c.AddDebug().SetMinimumLevel(LogLevel.Information))
+                    .AddChatCompletionService(kernelSettings);
+            })
             .WithPlugins(plugins => plugins.AddPluginFromObject<LightPlugin>())
             .Build()
         )
