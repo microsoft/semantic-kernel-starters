@@ -63,17 +63,19 @@ internal class ConsoleChat : IHostedService
             ChatMessageContent? chatMessageContent = null;
             await foreach(var content in result)
             {
-                System.Console.Write(content);
-                if (chatMessageContent == null)
+                if (content.Role.HasValue)
                 {
                     System.Console.Write("Assistant > ");
-                    AuthorRole authorRole = content.Role ?? AuthorRole.Assistant;
-                    chatMessageContent = new ChatMessageContent(authorRole, content.Content!, content.InnerContent, content.Encoding, content.Metadata);
+                    chatMessageContent = new(
+                        content.Role ?? AuthorRole.Assistant,
+                        content.Content!,
+                        content.InnerContent,
+                        content.Encoding,
+                        content.Metadata
+                    );
                 }
-                else
-                {
-                    chatMessageContent.Content += content;
-                }
+                System.Console.Write(content.Content);
+                chatMessageContent!.Content += content.Content;
             }
             System.Console.WriteLine();
             chatMessages.AddMessage(chatMessageContent!);
