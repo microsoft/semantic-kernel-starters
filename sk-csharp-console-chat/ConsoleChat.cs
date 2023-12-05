@@ -68,6 +68,7 @@ internal class ConsoleChat : IHostedService
                     System.Console.Write("Assistant > ");
                     chatMessageContent = new(
                         content.Role ?? AuthorRole.Assistant,
+                        content.ModelId!,
                         content.Content!,
                         content.InnerContent,
                         content.Encoding,
