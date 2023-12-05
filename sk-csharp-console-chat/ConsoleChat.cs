@@ -49,7 +49,8 @@ internal class ConsoleChat : IHostedService
             chatMessages.AddUserMessage(Console.ReadLine()!);
 
             // Get the chat completions
-            OpenAIPromptExecutionSettings openAIPromptExecutionSettings = new() {
+            OpenAIPromptExecutionSettings openAIPromptExecutionSettings = new()
+            {
                 FunctionCallBehavior = FunctionCallBehavior.AutoInvokeKernelFunctions
             };
             IAsyncEnumerable<StreamingChatMessageContent> result =
@@ -61,7 +62,7 @@ internal class ConsoleChat : IHostedService
 
             // Print the chat completions
             ChatMessageContent? chatMessageContent = null;
-            await foreach(var content in result)
+            await foreach (var content in result)
             {
                 if (content.Role.HasValue)
                 {

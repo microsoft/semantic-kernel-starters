@@ -13,14 +13,9 @@
     <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="6.0.1" />
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="6.0.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="6.0.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="../../semantic-kernel/dotnet/src/SemanticKernel.Core/SemanticKernel.Core.csproj" />
-    <ProjectReference Include="../../semantic-kernel/dotnet/src/SemanticKernel.Abstractions/SemanticKernel.Abstractions.csproj" />
-    <ProjectReference Include="../../semantic-kernel/dotnet/src/Connectors/Connectors.AI.OpenAI/Connectors.AI.OpenAI.csproj" />
-    <ProjectReference Include="../../semantic-kernel/dotnet/src/Functions/Functions.Yaml/Functions.Yaml.csproj" />
-    <ProjectReference Include="../../semantic-kernel/dotnet/src/Extensions/PromptTemplate.Handlebars/PromptTemplate.Handlebars.csproj" />
+    <PackageReference Include="Microsoft.SemanticKernel" Version="1.0.0-rc2" />
+    <PackageReference Include="Microsoft.SemanticKernel.PromptTemplate.Handlebars" Version="1.0.0-rc2" />
+    <PackageReference Include="Microsoft.SemanticKernel.Yaml" Version="1.0.0-rc2" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,10 +1,10 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using System.Net;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Http.Resilience;
+using Microsoft.Extensions.Logging;
 using Microsoft.SemanticKernel;
 using Plugins;
-using System.Net;
 
 // Load the kernel settings
 var kernelSettings = KernelSettings.LoadSettings();
