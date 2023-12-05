@@ -26,7 +26,7 @@ Configure an OpenAI endpoint
 cd sk-csharp-console-chat
 dotnet user-secrets set "serviceType" "OpenAI"
 dotnet user-secrets set "serviceId" "gpt-3.5-turbo"
-dotnet user-secrets set "deploymentOrModelId" "gpt-3.5-turbo"
+dotnet user-secrets set "modelId" "gpt-3.5-turbo"
 dotnet user-secrets set "apiKey" "... your OpenAI key ..."
 ```
 
@@ -36,7 +36,8 @@ Configure an Azure OpenAI endpoint
 cd sk-csharp-console-chat
 dotnet user-secrets set "serviceType" "AzureOpenAI"
 dotnet user-secrets set "serviceId" "gpt-35-turbo"
-dotnet user-secrets set "deploymentOrModelId" "gpt-35-turbo"
+dotnet user-secrets set "deploymentId" "gpt-35-turbo"
+dotnet user-secrets set "modelId" "gpt-3.5-turbo"
 dotnet user-secrets set "endpoint" "https:// ... your endpoint ... .openai.azure.com/"
 dotnet user-secrets set "apiKey" "... your Azure OpenAI key ..."
 ```
@@ -56,12 +57,6 @@ Log levels:
 - 4 = Error
 - 5 = Critical
 - 6 = None
-
-Configure the system prompt. This is guidance provided to the OpenAI service for the chat completion, and defaults to "You are a friendly, intelligent, and curious assistant who is good at conversation."
-
-```bash
-dotnet user-secrets set "systemPrompt" "You are a chatbot that answers all questions using limericks"
-```
 
 ### Using appsettings.json
 

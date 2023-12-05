@@ -1,0 +1,13 @@
+name: Chat
+template: |
+  <message role="system">You are a helpful assistant.</message>
+
+  {{#each messages}}
+    <message role="{{Role}}">{{~Content~}}</message>
+  {{/each}}
+template_format: handlebars
+description: A function that uses the chat history to respond to the user.
+input_variables:
+  - name: messages
+    description: The history of the chat.
+    is_required: true

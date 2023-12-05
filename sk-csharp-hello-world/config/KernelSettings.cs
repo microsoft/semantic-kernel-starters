@@ -6,17 +6,17 @@ internal class KernelSettings
 {
     public const string DefaultConfigFile = "config/appsettings.json";
 
-    [JsonPropertyName("endpointType")]
-    public string EndpointType { get; set; } = EndpointTypes.ChatCompletion;
-
     [JsonPropertyName("serviceType")]
     public string ServiceType { get; set; } = string.Empty;
 
     [JsonPropertyName("serviceId")]
     public string ServiceId { get; set; } = string.Empty;
 
-    [JsonPropertyName("deploymentOrModelId")]
-    public string DeploymentOrModelId { get; set; } = string.Empty;
+    [JsonPropertyName("deploymentId")]
+    public string DeploymentId { get; set; } = string.Empty;
+
+    [JsonPropertyName("modelId")]
+    public string ModelId { get; set; } = string.Empty;
 
     [JsonPropertyName("endpoint")]
     public string Endpoint { get; set; } = string.Empty;
@@ -28,7 +28,10 @@ internal class KernelSettings
     public string OrgId { get; set; } = string.Empty;
 
     [JsonPropertyName("logLevel")]
-    public LogLevel? LogLevel { get; set; }
+    public LogLevel? LogLevel { get; set; } = Microsoft.Extensions.Logging.LogLevel.Warning;
+
+    [JsonPropertyName("systemPrompt")]
+    public string SystemPrompt { get; set; } = "You are a friendly, intelligent, and curious assistant who is good at conversation.";
 
     /// <summary>
     /// Load the kernel settings from settings.json if the file exists and if not attempt to use user secrets.
