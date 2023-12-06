@@ -25,16 +25,14 @@ builder.ConfigureServices((context, services) =>
     // Add kernel settings to the host builder
     services
         .AddSingleton<KernelSettings>(kernelSettings)
-        .AddTransient<Kernel>(serviceProvider => new KernelBuilder()
-            .WithServices(serviceCollection =>
-            {
-                serviceCollection
-                    .AddLogging(c => c.AddDebug().SetMinimumLevel(LogLevel.Information))
-                    .AddChatCompletionService(kernelSettings);
-            })
-            .WithPlugins(plugins => plugins.AddPluginFromObject<LightPlugin>())
-            .Build()
-        )
+        .AddTransient<Kernel>(serviceProvider => {
+            KernelBuilder builder = new();
+            builder.Services.AddLogging(c => c.AddDebug().SetMinimumLevel(LogLevel.Information));
+            builder.Services.AddChatCompletionService(kernelSettings);
+            builder.Plugins.AddFromType<LightPlugin>();
+
+            return builder.Build();
+        })
         .AddHostedService<ConsoleChat>();
 });
 

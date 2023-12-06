@@ -13,9 +13,9 @@
     <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="6.0.1" />
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="6.0.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="6.0.0" />
-    <PackageReference Include="Microsoft.SemanticKernel" Version="1.0.0-rc2" />
-    <PackageReference Include="Microsoft.SemanticKernel.PromptTemplate.Handlebars" Version="1.0.0-rc2" />
-    <PackageReference Include="Microsoft.SemanticKernel.Yaml" Version="1.0.0-rc2" />
+    <PackageReference Include="Microsoft.SemanticKernel" Version="1.0.0-rc3" />
+    <PackageReference Include="Microsoft.SemanticKernel.PromptTemplate.Handlebars" Version="1.0.0-rc3" />
+    <PackageReference Include="Microsoft.SemanticKernel.Yaml" Version="1.0.0-rc3" />
   </ItemGroup>
 
   <ItemGroup>

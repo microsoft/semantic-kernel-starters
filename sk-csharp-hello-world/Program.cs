@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.SemanticKernel;
 using Microsoft.SemanticKernel.AI.ChatCompletion;
@@ -8,19 +9,12 @@ using Plugins;
 
 var kernelSettings = KernelSettings.LoadSettings();
 
-using var loggerFactory = LoggerFactory.Create(b =>
-    {
-        b.SetMinimumLevel(kernelSettings.LogLevel ?? LogLevel.Warning)
-            .AddConsole()
-            .AddDebug();
-    });
+KernelBuilder builder = new();
+builder.Services.AddLogging(c => c.SetMinimumLevel(LogLevel.Information).AddDebug());
+builder.Services.AddChatCompletionService(kernelSettings);
+builder.Plugins.AddFromType<LightPlugin>();
 
-Kernel kernel = new KernelBuilder()
-    .WithLoggerFactory(loggerFactory)
-    .WithChatCompletionService(kernelSettings)
-    .WithPlugins(plugins => plugins.AddPluginFromObject<LightPlugin>())
-    .Build();
-
+Kernel kernel = builder.Build();
 
 // Load prompt from resource
 using StreamReader reader = new(Assembly.GetExecutingAssembly().GetManifestResourceStream("prompts.Chat.yaml")!);
@@ -29,8 +23,8 @@ KernelFunction prompt = kernel.CreateFunctionFromPromptYaml(
     promptTemplateFactory: new HandlebarsPromptTemplateFactory()
 );
 
+// Create the chat history
 ChatHistory chatMessages = [];
-IChatCompletionService chatCompletionService = kernel.GetService<IChatCompletionService>();
 
 // Loop till we are cancelled
 while (true)
