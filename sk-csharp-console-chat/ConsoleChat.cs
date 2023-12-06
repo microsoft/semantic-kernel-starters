@@ -39,7 +39,7 @@ internal class ConsoleChat : IHostedService
     private async Task ExecuteAsync(CancellationToken cancellationToken)
     {
         ChatHistory chatMessages = [];
-        IChatCompletionService chatCompletionService = this._kernel.GetService<IChatCompletionService>();
+        IChatCompletionService chatCompletionService = this._kernel.GetRequiredService<IChatCompletionService>();
 
         // Loop till we are cancelled
         while (!cancellationToken.IsCancellationRequested)
