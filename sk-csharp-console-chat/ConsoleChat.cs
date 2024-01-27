@@ -76,9 +76,13 @@ internal class ConsoleChat : IHostedService
                 }
                 System.Console.Write(content.Content);
                 chatMessageContent!.Content += content.Content;
+
             }
             System.Console.WriteLine();
-            chatMessages.AddMessage(chatMessageContent!);
+            if (chatMessageContent is not null && chatMessageContent.Content is not null)
+            {
+                chatMessages.AddAssistantMessage(chatMessageContent!.Content ?? "");
+            }
         }
     }
 }
