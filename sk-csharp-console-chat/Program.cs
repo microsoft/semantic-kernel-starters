@@ -26,7 +26,7 @@ builder.ConfigureServices((context, services) =>
     services
         .AddSingleton<KernelSettings>(kernelSettings)
         .AddTransient<Kernel>(serviceProvider => {
-            KernelBuilder builder = new();
+            IKernelBuilder builder = Kernel.CreateBuilder();
             builder.Services.AddLogging(c => c.AddDebug().SetMinimumLevel(LogLevel.Information));
             builder.Services.AddChatCompletionService(kernelSettings);
             builder.Plugins.AddFromType<LightPlugin>();

@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Hosting;
 using Microsoft.SemanticKernel;
-using Microsoft.SemanticKernel.AI.ChatCompletion;
-using Microsoft.SemanticKernel.Connectors.AI.OpenAI;
+using Microsoft.SemanticKernel.ChatCompletion;
+using Microsoft.SemanticKernel.Connectors.OpenAI;
 
 /// <summary>
 /// This is the main application service.
@@ -48,15 +48,9 @@ internal class ConsoleChat : IHostedService
             System.Console.Write("User > ");
             chatMessages.AddUserMessage(Console.ReadLine()!);
 
-            // Get the chat completions
-            OpenAIPromptExecutionSettings openAIPromptExecutionSettings = new()
-            {
-                FunctionCallBehavior = FunctionCallBehavior.AutoInvokeKernelFunctions
-            };
             IAsyncEnumerable<StreamingChatMessageContent> result =
                 chatCompletionService.GetStreamingChatMessageContentsAsync(
                     chatMessages,
-                    executionSettings: openAIPromptExecutionSettings,
                     kernel: this._kernel,
                     cancellationToken: cancellationToken);
 
@@ -69,12 +63,16 @@ internal class ConsoleChat : IHostedService
                     System.Console.Write("Assistant > ");
                     chatMessageContent = new(
                         content.Role ?? AuthorRole.Assistant,
-                        content.ModelId!,
                         content.Content!,
+                        content.ModelId!,
                         content.InnerContent,
                         content.Encoding,
                         content.Metadata
                     );
+                }
+                if (content.Content is null)
+                {
+                    continue;
                 }
                 System.Console.Write(content.Content);
                 chatMessageContent!.Content += content.Content;
