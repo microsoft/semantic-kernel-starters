@@ -48,9 +48,16 @@ internal class ConsoleChat : IHostedService
             System.Console.Write("User > ");
             chatMessages.AddUserMessage(Console.ReadLine()!);
 
+            // Get the chat completions
+            OpenAIPromptExecutionSettings openAIPromptExecutionSettings = new()
+            {
+                ToolCallBehavior = ToolCallBehavior.AutoInvokeKernelFunctions
+            };
+
             IAsyncEnumerable<StreamingChatMessageContent> result =
                 chatCompletionService.GetStreamingChatMessageContentsAsync(
                     chatMessages,
+                    openAIPromptExecutionSettings,
                     kernel: this._kernel,
                     cancellationToken: cancellationToken);
 
@@ -78,7 +85,10 @@ internal class ConsoleChat : IHostedService
                 chatMessageContent!.Content += content.Content;
             }
             System.Console.WriteLine();
-            chatMessages.AddMessage(chatMessageContent!);
+            if (chatMessageContent is not null && chatMessageContent.Content is not null)
+            {
+                chatMessages.AddAssistantMessage(chatMessageContent!.Content ?? "");
+            }
         }
     }
 }
