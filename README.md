@@ -4,7 +4,7 @@ This repository contains starter projects for the [Semantic Kernel](https://gith
 
 ## Usage
 
-- `git clone https://github.com/semantic-kernel/semantic-kernel-starters`
+- `git clone https://github.com/microsoft/semantic-kernel-starters`
 - `code <any-sample-folder>`
 - Follow the instructions in each sample's README for setting up and running the sample
 Alternatively, you can use the [Semantic Kernel Tools](https://marketplace.visualstudio.com/items?itemName=ms-semantic-kernel.semantic-kernel) to "Create a New App" using the starters
