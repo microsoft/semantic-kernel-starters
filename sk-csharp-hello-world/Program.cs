@@ -2,14 +2,14 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.SemanticKernel;
-using Microsoft.SemanticKernel.AI.ChatCompletion;
-using Microsoft.SemanticKernel.Connectors.AI.OpenAI;
-using Microsoft.SemanticKernel.PromptTemplate.Handlebars;
+using Microsoft.SemanticKernel.ChatCompletion;
+using Microsoft.SemanticKernel.Connectors.OpenAI;
+using Microsoft.SemanticKernel.PromptTemplates.Handlebars;
 using Plugins;
 
 var kernelSettings = KernelSettings.LoadSettings();
 
-KernelBuilder builder = new();
+var builder = Kernel.CreateBuilder();
 builder.Services.AddLogging(c => c.SetMinimumLevel(LogLevel.Information).AddDebug());
 builder.Services.AddChatCompletionService(kernelSettings);
 builder.Plugins.AddFromType<LightPlugin>();
@@ -36,7 +36,7 @@ while (true)
     // Get the chat completions
     OpenAIPromptExecutionSettings openAIPromptExecutionSettings = new()
     {
-        FunctionCallBehavior = FunctionCallBehavior.AutoInvokeKernelFunctions
+        ToolCallBehavior = ToolCallBehavior.AutoInvokeKernelFunctions
     };
 
     var result = kernel.InvokeStreamingAsync<StreamingChatMessageContent>(
@@ -67,5 +67,8 @@ while (true)
         }
     }
     System.Console.WriteLine();
-    chatMessages.AddMessage(chatMessageContent!);
+    if (chatMessageContent != null)
+    {
+        chatMessages.AddMessage(chatMessageContent.Role, chatMessageContent.Content!);
+    }
 }
