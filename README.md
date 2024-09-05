@@ -1,5 +1,12 @@
 # Semantic Kernel Starters
 
+> [!IMPORTANT]  
+> We have consolidated all of our samples in the main repository and plan to remove this one in the near future.
+> Please use the followiing links:
+> - [.Net Samples](https://github.com/microsoft/semantic-kernel/tree/main/dotnet/samples)
+> - [Python Samples](https://github.com/microsoft/semantic-kernel/tree/main/python/samples)
+> - [Java Samples](https://github.com/microsoft/semantic-kernel-java/tree/main/samples)
+
 This repository contains starter projects for the [Semantic Kernel](https://github.com/microsoft/semantic-kernel). Each starter is a self-contained application using a different programming language and application runtime.
 
 ## Usage
