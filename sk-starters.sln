@@ -17,7 +17,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "sk_csharp_apim_demo", "sk_c
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "sk-typescript-console-chat", "sk-typescript-console-chat\sk-typescript-console-chat.csproj", "{9FEE5A32-69C2-4DEF-9179-BBCD80AB8317}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductDocumentation", "sk-process-framework\ProductDocumentationDotnet\ProductDocumentation.csproj", "{AE3384DA-93B2-613B-911B-01B595DE0B42}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductDocumentation", "sk-process-framework\dotnet\ProductDocumentation\ProductDocumentation.csproj", "{AE3384DA-93B2-613B-911B-01B595DE0B42}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
