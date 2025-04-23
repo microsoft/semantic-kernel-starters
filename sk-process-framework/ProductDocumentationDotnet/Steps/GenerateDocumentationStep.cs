@@ -1,5 +1,5 @@
-﻿using Microsoft.SemanticKernel.ChatCompletion;
-using Microsoft.SemanticKernel;
+﻿using Microsoft.SemanticKernel;
+using Microsoft.SemanticKernel.ChatCompletion;
 
 namespace ProductDocumentation.Steps;
 
@@ -7,7 +7,7 @@ public sealed class GenerateDocumentationStep : KernelProcessStep<GeneratedDocum
 {
     private GeneratedDocumentationState _state = new();
 
-    private string systemPrompt =
+    private const string SystemPrompt =
             """
             Your job is to write high quality and engaging customer facing documentation for a new product from Contoso. You will be provide with information
             about the product in the form of internal documentation, specs, and troubleshooting guides and you must use this information and
@@ -17,17 +17,17 @@ public sealed class GenerateDocumentationStep : KernelProcessStep<GeneratedDocum
 
     public override ValueTask ActivateAsync(KernelProcessStepState<GeneratedDocumentationState> state)
     {
-        _state = state.State!;
-        _state.ChatHistory ??= new ChatHistory(systemPrompt);
+        this._state = state.State!;
+        this._state.ChatHistory ??= new ChatHistory(SystemPrompt);
 
         return base.ActivateAsync(state);
     }
 
     [KernelFunction]
-    public async Task<string?> GenerateDocumentation(Kernel kernel, KernelProcessStepContext context, string productInfo)
+    public async Task<string?> GenerateDocumentationAsync(Kernel kernel, KernelProcessStepContext context, string productInfo)
     {
         // Add the new product info to the chat history
-        _state.ChatHistory!.AddUserMessage($"Product Info:\n\n{productInfo}");
+        this._state.ChatHistory!.AddUserMessage($"Product Info:\n\n{productInfo}");
 
         // Get a response from the LLM
         IChatCompletionService chatCompletionService = kernel.GetRequiredService<IChatCompletionService>();
