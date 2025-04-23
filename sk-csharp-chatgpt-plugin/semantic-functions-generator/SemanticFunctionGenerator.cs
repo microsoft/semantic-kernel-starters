@@ -84,6 +84,7 @@ using AIPlugins.AzureFunctions.Extensions;
 
 namespace {rootNamespace};
 
+#pragma warning disable CA1515
 public class {folderName}
 {{
     private readonly ILogger _logger;
