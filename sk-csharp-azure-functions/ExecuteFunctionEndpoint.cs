@@ -49,12 +49,10 @@ public class ExecuteFunctionEndpoint
         }
 
         var skill = this._kernel.ImportSemanticSkillFromDirectory(skillsDirectory, skillName);
-        if (!skill.ContainsKey(functionName))
+        if (!skill.TryGetValue(functionName, out var function))
         {
             return await CreateResponseAsync(requestData, HttpStatusCode.NotFound, new ErrorResponse() { Message = $"Unable to find {skillName}.{functionName}" }).ConfigureAwait(false);
         }
-
-        var function = skill[functionName];
 
         var context = new ContextVariables();
         foreach (var v in functionRequest.Variables)
