@@ -1,7 +1,7 @@
 ﻿using Microsoft.SemanticKernel;
 using Microsoft.SemanticKernel.ChatCompletion;
 
-namespace ProductDocumentation.Steps;
+namespace Steps;
 
 public sealed class GenerateDocumentationStep : KernelProcessStep<GeneratedDocumentationState>
 {
