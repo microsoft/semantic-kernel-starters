@@ -3,7 +3,7 @@ workflow:
   nodes:
     - id: GetProductInfoStep
       description: Gather information about the product
-      implementation: GetProductInfoStep
+      implementation: Steps.GetProductInfoStep
       on_complete:
         - on_condition:
             type: default
@@ -11,7 +11,7 @@ workflow:
               - event_type: GetProductInfo.OnResult
     - id: GenerateDocumentationStep
       description: Generate documentation for the product with LLM
-      implementation: GenerateDocumentationStep
+      implementation: Steps.GetProductInfoStep
       on_complete:
         - on_condition:
             type: default
@@ -20,7 +20,7 @@ workflow:
               - event_type: DocumentationGenerated
     - id: PublishDocumentationStep
       description: Publish the documentation
-      implementation: PublishDocumentationStep
+      implementation: Steps.GetProductInfoStep
       on_complete:
         - on_condition:
             type: default

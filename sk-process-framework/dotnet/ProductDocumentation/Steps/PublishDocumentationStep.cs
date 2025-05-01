@@ -1,6 +1,6 @@
 ﻿using Microsoft.SemanticKernel;
 
-namespace ProductDocumentation.Steps;
+namespace Steps;
 
 public sealed class PublishDocumentationStep : KernelProcessStep
 {
