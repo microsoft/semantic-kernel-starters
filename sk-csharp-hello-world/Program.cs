@@ -55,8 +55,8 @@ while (true)
             System.Console.Write("Assistant > ");
             chatMessageContent = new ChatMessageContent(
                 content.Role ?? AuthorRole.Assistant,
-                content.ModelId!,
                 content.Content!,
+                content.ModelId!,
                 content.InnerContent,
                 content.Encoding,
                 content.Metadata);
