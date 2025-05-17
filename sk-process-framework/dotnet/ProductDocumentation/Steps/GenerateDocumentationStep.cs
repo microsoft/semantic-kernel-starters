@@ -24,7 +24,7 @@ public sealed class GenerateDocumentationStep : KernelProcessStep<GeneratedDocum
     }
 
     [KernelFunction]
-    public async Task<string?> GenerateDocumentationAsync(Kernel kernel, KernelProcessStepContext context, string productInfo)
+    public async Task<string?> GenerateDocumentationAsync(Kernel kernel, string productInfo)
     {
         // Add the new product info to the chat history
         this._state.ChatHistory!.AddUserMessage($"Product Info:\n\n{productInfo}");
@@ -34,8 +34,6 @@ public sealed class GenerateDocumentationStep : KernelProcessStep<GeneratedDocum
         var generatedDocumentationResponse = await chatCompletionService.GetChatMessageContentAsync(this._state.ChatHistory!);
 
         var documentationString = generatedDocumentationResponse.Content!.ToString();
-
-        await context.EmitEventAsync("DocumentationGenerated", documentationString);
 
         return documentationString;
     }

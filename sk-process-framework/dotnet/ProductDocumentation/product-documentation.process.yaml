@@ -1,26 +1,37 @@
 workflow:
-  name: ProductDocumentation
+  id: ProductDocumentation
+  inputs:
+    events:
+      cloud_events:
+        - type: input_message_received
+          data_schema: 
+            type: string
   nodes:
     - id: GetProductInfoStep
+      type: dotnet
       description: Gather information about the product
-      implementation: Steps.GetProductInfoStep
+      agent:
+        type: Steps.GetProductInfoStep, ProductDocumentation
       on_complete:
         - on_condition:
             type: default
             emits:
               - event_type: GetProductInfo.OnResult
     - id: GenerateDocumentationStep
+      type: dotnet
       description: Generate documentation for the product with LLM
-      implementation: Steps.GetProductInfoStep
+      agent:
+        type: Steps.GenerateDocumentationStep, ProductDocumentation
       on_complete:
         - on_condition:
             type: default
             emits:
               - event_type: GenerateDocumentation.OnResult
-              - event_type: DocumentationGenerated
     - id: PublishDocumentationStep
+      type: dotnet
       description: Publish the documentation
-      implementation: Steps.GetProductInfoStep
+      agent:
+        type: Steps.PublishDocumentationStep, ProductDocumentation
       on_complete:
         - on_condition:
             type: default
@@ -28,7 +39,8 @@ workflow:
               - event_type: ProcessCompleted
   orchestration:
     - listen_for:
-        event: InputMessageReceived
+        event: input_message_received
+        from: _workflow_
       then:
         - node: GetProductInfoStep
     - listen_for:
@@ -37,7 +49,7 @@ workflow:
       then:
         - node: GenerateDocumentationStep
     - listen_for:
-        event: DocumentationGenerated
+        event: GenerateDocumentation.OnResult
         from: GenerateDocumentationStep
       then:
         - node: PublishDocumentationStep

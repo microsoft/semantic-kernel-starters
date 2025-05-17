@@ -1,6 +1,6 @@
-# Process Framework: Product Documentation application example
+# Process Framework: Product Documentation .NET example
 
-This project example demonstrates how to define, preview, and execute a process of generating product documentation.
+This project example demonstrates how to define, preview, and execute a process of generating product documentation using .NET process steps.
 
 Note: it is recommended to work with this example using [Semantic Kernel Tools](https://marketplace.visualstudio.com/items?itemName=ms-semantic-kernel.semantic-kernel) VS Code extension.
 
@@ -19,6 +19,14 @@ Note: it is recommended to work with this example using [Semantic Kernel Tools](
 
 ## Features
 
+### Select an AI Model
+
+To select an AI model:
+- Open the Semantic Kernel extension in the side panel of Visual Studio Code.
+- In the "AI Endpoints" section, choose your preferred AI provider and model.
+
+![Select AI Model](images/select-model.jpeg)
+
 ### Preview a Process
 
 To preview a process:
@@ -27,13 +35,13 @@ To preview a process:
 
 ![Preview Process](images/preview-process.jpeg)
 
-### Execute a Process
+### Debug a Process
 
-To execute a process:
+To debug a process:
 - Open the [product-documentation.process.yaml](./product-documentation.process.yaml) file.
-- Click the **Execute Process** button in the top bar of the process file.
+- Click the **Debug Process** button in the top bar of the process file.
 
-![Execute Process](images/execute-process.jpeg)
+![Debug Process](images/debug-process.jpeg)
 
 ### Process Node Logic
 
