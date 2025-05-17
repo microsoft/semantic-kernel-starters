@@ -1,6 +1,6 @@
-# Process Framework: Product Documentation .NET example
+# Process Framework: Product Documentation .NET and declarative example
 
-This project example demonstrates how to define, preview, and execute a process of generating product documentation using .NET classes as process steps.
+This project example demonstrates how to define, preview, and execute a process of generating product documentation using .NET classes and declarative AI Agents as process steps.
 
 Note: it is recommended to work with this example using [Semantic Kernel Tools](https://marketplace.visualstudio.com/items?itemName=ms-semantic-kernel.semantic-kernel) VS Code extension.
 
@@ -12,10 +12,14 @@ Note: it is recommended to work with this example using [Semantic Kernel Tools](
 
 1. Open a terminal in the project directory.
 2. Run `dotnet build` command to build the logic of the process nodes.
+3. Run `dotnet user-secrets set "AZUREOPENAI_DEPLOYMENT_NAME" "YOUR_DEPLOYMENT_NAME"` to configure Azure OpenAI deployment name.
+4. Run `dotnet user-secrets set "AZUREOPENAI_ENDPOINT" "YOUR_ENDPOINT"` to configure Azure OpenAI endpoint.
+5. Run `az login` to authenticate using Azure CLI and get an access to Azure OpenAI deployment.
 
 ## Getting Started
 
 1. Open the [product-documentation.process.yaml](./product-documentation.process.yaml) file in VS Code to start working with processes.
+2. Open the [Program.cs](./Program.cs) file in VS Code to learn about imperative and declarative process approaches.
 
 ## Features
 

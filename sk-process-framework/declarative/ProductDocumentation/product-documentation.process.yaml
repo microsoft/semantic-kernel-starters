@@ -1,0 +1,46 @@
+workflow:
+  id: ProductDocumentation
+  inputs:
+    events:
+      cloud_events:
+        - type: input_message_received
+          data_schema: 
+            type: string
+  nodes:
+    - id: ProductDocumentationAgent
+      type: declarative
+      description: Generates an information about the product
+      agent: 
+        type: chat_completion_agent 
+        name: ProductDocumentationAgent 
+        description: Generates an information about the product
+        instructions: Generate a short information about coffee machine product. 
+      on_complete:
+        - on_condition:
+            type: default
+            emits:
+              - event_type: GeneratedInformation.OnResult
+    - id: SummarizationAgent
+      type: declarative
+      description: Summarizes the provided information
+      agent: 
+        type: chat_completion_agent 
+        name: SummarizationAgent 
+        description: Summarizes the provided information
+        instructions: Summarize the provided information in 3 sentences. 
+      on_complete:
+        - on_condition:
+            type: default
+            emits:
+              - event_type: ProcessCompleted
+  orchestration:
+    - listen_for:
+        event: input_message_received
+        from: _workflow_
+      then:
+        - node: ProductDocumentationAgent
+    - listen_for:
+        event: GeneratedInformation.OnResult
+        from: ProductDocumentationAgent
+      then:
+        - node: SummarizationAgent
