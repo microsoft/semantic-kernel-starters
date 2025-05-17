@@ -1,4 +1,4 @@
-# Process Framework: Product Documentation .NET example
+# Process Framework: Product Documentation .NET and declarative example
 
 This project example demonstrates how to define, preview, and execute a process of generating product documentation using .NET classes and declarative AI Agents as process steps.
 

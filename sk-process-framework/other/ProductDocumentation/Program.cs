@@ -1,7 +1,7 @@
-using Azure.Identity;
+﻿using Azure.Identity;
+using Filters;
 using Microsoft.Extensions.Configuration;
 using Microsoft.SemanticKernel;
-using Filters;
 using Steps;
 
 namespace ProductDocumentation;
