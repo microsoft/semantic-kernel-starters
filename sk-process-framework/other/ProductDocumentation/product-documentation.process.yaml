@@ -1,0 +1,62 @@
+workflow:
+  id: ProductDocumentation
+  inputs:
+    events:
+      cloud_events:
+        - type: input_message_received
+          data_schema: 
+            type: string
+  nodes:
+    - id: GetProductInfoStep
+      type: dotnet
+      description: Gather information about the product
+      agent:
+        type: Steps.GetProductInfoStep, ProductDocumentation
+      on_complete:
+        - on_condition:
+            type: default
+            emits:
+              - event_type: GetProductInfo.OnResult
+    - id: GenerateDocumentationAgent
+      type: declarative
+      description: Generates a documentation for provided product
+      agent: 
+        type: chat_completion_agent 
+        name: GenerateDocumentationAgent 
+        description: Generates a documentation for provided product
+        instructions: |
+            Your job is to write high quality and engaging customer facing documentation for a new product from Contoso. You will be provide with information
+            about the product in the form of internal documentation, specs, and troubleshooting guides and you must use this information and
+            nothing else to generate the documentation. If suggestions are provided on the documentation you create, take the suggestions into account and
+            rewrite the documentation. Make sure the product sounds amazing.
+      on_complete:
+        - on_condition:
+            type: default
+            emits:
+              - event_type: GenerateDocumentation.OnResult
+    - id: PublishDocumentationStep
+      type: dotnet
+      description: Publish the documentation
+      agent:
+        type: Steps.PublishDocumentationStep, ProductDocumentation
+      on_complete:
+        - on_condition:
+            type: default
+            emits:
+              - event_type: ProcessCompleted
+  orchestration:
+    - listen_for:
+        event: input_message_received
+        from: _workflow_
+      then:
+        - node: GetProductInfoStep
+    - listen_for:
+        event: GetProductInfo.OnResult
+        from: GetProductInfoStep
+      then:
+        - node: GenerateDocumentationAgent
+    - listen_for:
+        event: GenerateDocumentation.OnResult
+        from: GenerateDocumentationAgent
+      then:
+        - node: PublishDocumentationStep
