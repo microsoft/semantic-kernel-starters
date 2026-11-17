@@ -27,7 +27,7 @@ jobs:
         clean: true
 
     - name: Setup .NET
-      uses: actions/setup-dotnet@55ec9447dda3d1cf6bd587150f3262f30ee10815 # v3.4.2
+      uses: actions/setup-dotnet@0f4a354dd5547a28c70b7853dbd95d5b67886e73 # v6.1.0
       with:
         dotnet-version: 8.0.x
       env:
